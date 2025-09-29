@@ -1,0 +1,73 @@
+#
+# Copyright (c) 2025 Amazon.com, Inc. or its affiliates.  All rights reserved.
+#
+# PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
+#
+schema-version = 1
+
+[package]
+title = "Vega TV Interfaces Sample App"
+version = "0.21.0"
+id = "com.amazondeveloper.keplertvinterfaces"
+icon = "@image/tv-interfaces-app-dark.png"
+
+[components]
+[[components.interactive]]
+id = "com.amazondeveloper.keplertvinterfaces.main"
+runtime-module = "/com.amazon.kepler.keplerscript.runtime.loader_2@IKeplerScript_2_0"
+categories = ["com.amazon.category.main"]
+launch-type = "singleton"
+
+[wants]
+[[wants.service]]
+id = "com.amazon.inputmethod.service"
+
+[[wants.service]]
+id = "com.amazon.inputd.service"
+
+[[wants.service]]
+id = "com.amazon.network.service"
+
+[[wants.service]]
+id = "com.amazon.mediametrics.service"
+
+[[wants.service]]
+id = "com.amazon.media.server"
+
+[[wants.service]]
+id = "com.amazon.gipc.uuid.*"
+
+[[wants.service]]
+id = "com.amazon.media.playersession.service"
+
+[[wants.service]]
+id = "com.amazon.audio.stream"
+
+[[wants.service]]
+id = "com.amazon.audio.control"
+
+[[wants.service]]
+id = "com.amazon.audio.system"
+
+[[wants.service]]
+id = "com.amazon.mediabuffer.service"
+
+[[wants.service]]
+id = "com.amazon.mediatransform.service"
+
+[[wants.service]]
+id = "com.amazon.drm.key"
+
+[[wants.service]]
+id = "com.amazon.drm.crypto"
+
+[[wants.privilege]]
+id = "com.amazon.devconf.privilege.accessibility"
+
+[needs]
+[[needs.privilege]]
+id="com.amazon.network.privilege.net-info"
+
+[offers]
+[[offers.service]]
+id = "com.amazon.gipc.uuid.*"

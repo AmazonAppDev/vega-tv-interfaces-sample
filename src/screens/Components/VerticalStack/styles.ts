@@ -1,0 +1,28 @@
+import { StyleSheet } from 'react-native';
+
+import type { AppTheme } from '@AppTheme';
+
+export const getVerticalStackStyles = (theme: AppTheme) =>
+  StyleSheet.create({
+    screenContainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    background: {
+      flex: 1,
+      flexDirection: 'column',
+      backgroundColor: theme.colors.background,
+    },
+    container: {
+      flex: 1,
+      marginTop: 10,
+      alignItems: 'center',
+    },
+    headerText: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: theme.colors.onPrimary,
+      marginBottom: 16,
+    },
+  });

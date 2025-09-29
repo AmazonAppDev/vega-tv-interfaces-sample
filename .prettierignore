@@ -1,0 +1,12 @@
+# Build output
+build/
+dist/
+
+# Node modules
+node_modules/
+
+# Coverage directory
+coverage/
+
+# Logs
+*.log

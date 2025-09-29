@@ -1,0 +1,15 @@
+# Build output
+build/
+dist/
+
+# Node modules
+node_modules/
+
+# Coverage directory
+coverage/
+
+# Config files
+*.config.js
+
+# ESLint plugins
+plugins/
