@@ -1,10 +1,12 @@
-# Vega TV Interfaces Sample App
+Vega TV Interfaces Sample App
+=============================
 
 The Vega TV Interfaces Sample App is built with the Vega Developer Tools. This sample app demonstrates the recommended approaches for building TV-focused interfaces with React Native.  
 
 ![App Preview](./docs/images/launch-app.png)
 
-## Introduction
+Introduction
+------------
 
 The TV Interfaces Example demonstrates how to build performant and user-friendly TV applications. This feature-focused sample app serves as a practical guide for developers implementing TV-optimized layouts and components.
 
@@ -33,7 +35,8 @@ TV applications are navigated primarily with directional controls (up, down, lef
           
 The examples in this document demonstrate proven patterns that create intuitive, responsive TV experiences using the Vega Developer Tools.
 
-## Documentation Overview
+Documentation Overview
+----------------------
 
 This sample app's documentation is organized into the following sections:
 
@@ -50,18 +53,19 @@ Detailed Component and Hook Documentation:
 * [Hooks](./docs/hooks.md) - Collection of custom hooks for TV interface development.
 
 
-## Build and run the app
+Build and run the app
+---------------------
 
 ### Prerequisites
 
-Before you launch the sample app, make sure that you have [installed the Vega Developer Tools](https://developer.amazon.com/docs/vega/0.21/install-vega-sdk.html) and NodeJS 18-20.
+Before you launch the sample app, make sure that you have [installed the Vega Developer Tools](https://developer.amazon.com/docs/vega/latest/install-vega-sdk.html) and NodeJS 18-20.
 
 
 ### Step 1: Build the app
 
 After you download the source code from GitHub, you can build the Vega TV Interfaces Sample App from the command line to generate VPKG files. The VPKG files run on the Vega Virtual Device and Vega OS Fire TV Stick.
 
-You can also use [Vega Studio](https://developer.amazon.com/docs/vega/0.21/setup-extension.html#learn-the-basic-features) with Visual Studio Code to build the app.
+You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/setup-extension.html#learn-the-basic-features) with Visual Studio Code to build the app.
 
 1. At the command prompt, navigate to the Vega TV Interfaces Sample App source code directory. 
 
@@ -90,7 +94,7 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/0.21/setup
 1. To start the Vega Virtual Device, at the command prompt, run the following command.
 
    ```
-   kepler virtual-device start
+   vega virtual-device start
    ```
 
 2. Go to the directory where you placed the VPKG files. 
@@ -100,13 +104,13 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/0.21/setup
    - On Mac M-series based devices. 
       
       ```
-      kepler run-kepler build/aarch64-release/keplertvinterfaces_aarch64.vpkg
+      vega run-app build/aarch64-release/keplertvinterfaces_aarch64.vpkg
       ```
 
    - On x86_64 based devices.
       
      ```
-     kepler run-kepler build/x86_64-release/keplertvinterfaces_x86_64.vpkg
+     vega run-app build/x86_64-release/keplertvinterfaces_x86_64.vpkg
      ```  
 
 #### Vega OS Fire TV Stick
@@ -116,14 +120,15 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/0.21/setup
 2. To install and launch the app on your Vega OS Fire TV Stick, run the following command.
 
    ```
-   kepler run-kepler build/armv7-release/keplertvinterfaces_armv7.vpkg
+   vega run-app build/armv7-release/keplertvinterfaces_armv7.vpkg
    ```
 
 
 
 
 
-## Troubleshooting the app
+Troubleshooting the app
+-----------------------
 
 If you're facing unexpected issues while trying to build and run the app (For example, the build is failing randomly, the app is not starting, or the app is crashing randomly.) try the following solutions:
 
@@ -146,11 +151,12 @@ npm start -- --reset-cache
 
 * Restart the simulator. We have observed the simulator crashing randomly if it's used without restarting for extended periods of time.
 
-* Run the `kepler clean` command. This removes the artifacts generated in the top level `/.build` folder. To learn more, see the [Vega CLI Functions](https://developer.amazon.com/docs/vega/0.21/cli-tools.html) document.
+* Run the `vega clean` command. This removes the artifacts generated in the top level `/.build` folder. To learn more, see the [Vega CLI Functions](https://developer.amazon.com/docs/vega/latest/cli-tools.html) document.
 
 
 
-## Testing the app
+Testing the app
+---------------
 
 [React Native Testing Library (RNTL)](https://callstack.github.io/react-native-testing-library/) is used for component and integration testing in this project. RNTL provides a robust set of tools for testing React Native apps with a focus on user interactions and accessibility.
 
@@ -174,29 +180,27 @@ npm run test:watch
 
 For more detailed information about our testing setup, best practices, and custom utilities, please refer to the [testing documentation](./src/test-utils/README.md) in the test-utils directory.
 
-## Services
+Services
+--------
 
 The app is structured to delegate specific tasks to encapsulated units of logic known as services. Each service is designed to handle a particular functionality, allowing for clean separation of concerns and ensuring that the logic is reusable and maintainable. This approach allows services to be potentially extracted and used in other applications with ease.
 
-- [**AppConfig Service**](./src/services/appConfig/README.md): Manages environment variables defined in the `.env` file, enabling the app to read and apply configuration settings.
+- [**AppConfig Service**](src/services/appConfig/README.md): Manages environment variables defined in the `.env` file, enabling the app to read and apply configuration settings.
 
-- [**ApiClient Service**](./src/services/apiClient/README.md): Manages fetching data from various data sources exposing a common API for different clients that can be consumed across the app especially in fetchers implemented in `src/api` folder.
+- [**DeviceInfo Service**](src/services/deviceInfo/README.md): Provides access to device-specific information, such as determining the type of device, and interacts with device-related APIs.
 
-- [**DeviceInfo Service**](./src/services/deviceInfo/README.md): Provides access to device-specific information, such as determining the type of device, and interacts with device-related APIs.
+- [**DeviceStorage Service**](src/services/Storage/README.md): Provides access to device storage, by abstracting storage-related APIs exposed by `AsyncStorage`.
 
-- [**DeviceStorage Service**](./src/services/deviceStorage/README.md): Provides access to device storage, by abstracting storage-related APIs exposed by `AsyncStorage`.
+- [**NetInfo Service**](src/services/netInfo/README.md): Monitors internet connectivity, manages the network state, and listens for network-related events.
 
-- [**NetInfo Service**](./src/services/netInfo/README.md): Monitors internet connectivity, manages the network state, and listens for network-related events.
+- [**i18n Service**](src/services/i18n/README.md): Provides methods to manage translations in the app.
 
-- [**Auth Service**](./src/services/auth/README.md): Manages user authentication, including signing users in and out, and restoring session data from device storage.
+- [**Focus Guide Service**](src/services/focusGuide/README.md): Provides hooks and wrappers to manage focusing elements in the app.
 
-- [**i18n Service**](./src/services/i18n/README.md): Provides methods to manage translations in the app.
+- [**Accessibility (a11y) Service**](src/services/a11y/README.md): Provides common logic for applying complex accessibility properties to components.
 
-- [**Focus Guide Service**](./src/services/focusGuide/README.md): Provides hooks and wrappers to manage focusing elements in the app.
-
-- [**Accessibility (a11y) Service**](./src/services/a11y/README.md): Provides common logic for applying complex accessibility properties to components.
-
-## Customize the UI theme
+Customize the UI theme
+----------------------
 
 You can customize the UI by changing the color scheme and font settings. 
 
@@ -322,7 +326,8 @@ src/theme/
 
 New tokens are visible after you reload your app.
 
-## Components
+Components
+----------
 
 To provide default props and customize components, importing directly from `@amazon-devices/kepler-ui-components` is blocked across the app.
 
@@ -408,7 +413,8 @@ const styles = useThemedStyles(({colors}: AppTheme) => StyleSheet.create({
 * **`StyleSheet.NamedStyles`**: A type from React Native's `StyleSheet` API for defining strongly-typed styles.
 
 
-## Set up translations
+Set up translations
+-------------------
 
 This section describes how to adjust existing translations to your needs and includes detailed information about the i18n service.
 
@@ -560,13 +566,15 @@ To keep all translation files with the same shape, we provide a script to sync t
 ```
 npm run i18n:sync
 ```
-## Release Notes
+Release Notes
+-------------
 
 - v0.21
 
   Initial release.
 
-## License
+License
+-------
 
 This project is licensed under the MIT-0 License - see the [LICENSE](LICENSE) file for details.
 
