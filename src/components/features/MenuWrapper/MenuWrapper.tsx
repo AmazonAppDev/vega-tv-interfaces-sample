@@ -121,21 +121,6 @@ export const MenuWrapper: React.FC = () => {
           ),
         )}
       </View>
-      <View style={styles.closeButtonWrapper}>
-        {isOpen && (
-          <MenuItem
-            icon="close"
-            onFocus={onMenuItemFocus}
-            onPress={closeDrawer}
-            label={t('common-close')}
-            accessibilityHint={t('menu-item-use-direction-to-go-to-a11y-label')
-              .replace('<direction>', t('a11y-hint-direction-up'))
-              .replace('<go-to-label>', menuItems[menuItems.length - 1]!.label)}
-            aria-label={t('close-menu-button-a11y-label')}
-            aria-hidden
-          />
-        )}
-      </View>
     </FocusGuideView>
   );
 };

@@ -1,6 +1,6 @@
 {
   "name": "@amazon-devices/keplertvinterfaces",
-  "version": "0.21.0",
+  "version": "0.21.1",
   "files": [
     "dist"
   ],
@@ -33,15 +33,15 @@
     "i18n:sync": "npx i18next-locales-sync -c ./localesSync.config.js"
   },
   "dependencies": {
-    "@amazon-devices/asset-resolver-lib": "^1.0.0",
-    "@amazon-devices/kepler-ui-components": "^2.0.0",
-    "@amazon-devices/keplerscript-kepleri18n-lib": "^1.0.0",
-    "@amazon-devices/keplerscript-netmgr-lib": "^2.0.2",
-    "@amazon-devices/react-native-device-info": "^2.0.0",
+    "@amazon-devices/asset-resolver-lib": "~1.0.0",
+    "@amazon-devices/kepler-ui-components": "~2.4.0",
+    "@amazon-devices/keplerscript-kepleri18n-lib": "~1.1.0",
+    "@amazon-devices/keplerscript-netmgr-lib": "~2.0.0",
+    "@amazon-devices/react-native-device-info": "~2.0.0",
     "@amazon-devices/react-native-kepler": "~2.0.0",
-    "@amazon-devices/react-native-reanimated": "^2.0.0",
+    "@amazon-devices/react-native-reanimated": "~2.0.0",
     "@amazon-devices/react-native-screens": "~2.0.0",
-    "@amazon-devices/react-native-vector-icons": "^2.0.1731521715",
+    "@amazon-devices/react-native-vector-icons": "~2.0.0",
     "@amazon-devices/react-navigation__core": "~7.0.0",
     "@amazon-devices/react-navigation__devtools": "~7.0.0",
     "@amazon-devices/react-navigation__drawer": "~7.0.0",
@@ -62,7 +62,7 @@
     "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@amazon-devices/kepler-cli-platform": "^0",
+    "@amazon-devices/kepler-cli-platform": "~0.22.0",
     "@amazon-devices/shopify__flash-list": "~2.0.0",
     "@babel/plugin-proposal-decorators": "^7.25.9",
     "@callstack/eslint-config": "^14.2.0",
