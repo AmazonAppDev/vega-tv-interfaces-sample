@@ -58,8 +58,12 @@ Build and run the app
 
 ### Prerequisites
 
-Before you launch the sample app, make sure that you have [installed the Vega Developer Tools](https://developer.amazon.com/docs/vega/latest/install-vega-sdk.html) and NodeJS 18-20.
+Before you launch the sample app, make sure that you have:
 
+* [Vega Developer Tools](https://developer.amazon.com/docs/vega/latest/install-vega-sdk.html)
+* [Python v3.x](https://www.python.org/downloads/)
+* [Java Runtime Environment v21 or later](https://learn.microsoft.com/en-us/java/openjdk/download)
+* [NodeJS v18-v20](https://nodejs.org/en/download/)
 
 ### Step 1: Build the app
 
@@ -97,9 +101,7 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/set
    vega virtual-device start
    ```
 
-2. Go to the directory where you placed the VPKG files. 
-
-3. To install and launch the app on the Vega Virtual Device, run the following command, depending on your device architecture.
+2. To install and launch the app on the Vega Virtual Device, run the following command, depending on your device architecture.
 
    - On Mac M-series based devices. 
       
