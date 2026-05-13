@@ -1,10 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { View } from 'react-native';
 
-import type { NavigationProp } from '@amazon-devices/react-navigation__core';
-import { useNavigation } from '@amazon-devices/react-navigation__core';
 import { useDrawerStatus } from '@amazon-devices/react-navigation__drawer';
-import { DrawerActions } from '@amazon-devices/react-navigation__routers';
 
 import { useThemedStyles } from '@AppTheme';
 import { injectListNavigationHints } from '@AppServices/a11y';
@@ -13,16 +10,22 @@ import {
   useFocusGuideEventHandler,
 } from '@AppServices/focusGuide';
 import { useTranslation } from '@AppServices/i18n';
-import type { MainMenuParamList } from '@AppSrc/navigators/MainMenuNavigator/MainMenuNavigator';
 import type { MenuItemProps } from './MenuItem';
 import { MenuItem } from './MenuItem';
 import { MENU_WIDTHS } from './constants';
 import { getMenuWRapperStyles } from './styles';
 
-export const MenuWrapper: React.FC = () => {
+type MenuWrapperProps = {
+  navigation: {
+    navigate: (screen: string) => void;
+    closeDrawer: () => void;
+    openDrawer: () => void;
+  };
+};
+
+export const MenuWrapper: React.FC<MenuWrapperProps> = ({ navigation }) => {
   const [activeMenuItemIndex, setActiveMenuItemIndex] = useState(0);
   const isOpen = useDrawerStatus() === 'open';
-  const navigation = useNavigation<NavigationProp<MainMenuParamList>>();
   const styles = useThemedStyles(getMenuWRapperStyles);
   const { t } = useTranslation();
 
@@ -32,12 +35,18 @@ export const MenuWrapper: React.FC = () => {
     () => [
       {
         label: t('menu-wrapper-item-home-label'),
-        onPress: () => navigation.navigate('Home'),
+        onPress: () => {
+          navigation.navigate('Home');
+          navigation.closeDrawer();
+        },
         icon: 'home',
       },
       {
         label: t('menu-wrapper-item-components-label'),
-        onPress: () => navigation.navigate('Components'),
+        onPress: () => {
+          navigation.navigate('Components');
+          navigation.closeDrawer();
+        },
         icon: 'apps',
       },
     ],
@@ -71,10 +80,10 @@ export const MenuWrapper: React.FC = () => {
   );
 
   const openDrawer = () => {
-    navigation.dispatch(DrawerActions.openDrawer());
+    navigation.openDrawer();
   };
   const closeDrawer = () => {
-    navigation.dispatch(DrawerActions.closeDrawer());
+    navigation.closeDrawer();
   };
 
   const onMenuItemFocus = () => {
@@ -114,7 +123,10 @@ export const MenuWrapper: React.FC = () => {
               }}
               icon={icon}
               isExpanded={isOpen}
-              onFocus={onMenuItemFocus}
+              onFocus={() => {
+                setActiveMenuItemIndex(index);
+                onMenuItemFocus();
+              }}
               isActive={activeMenuItemIndex === index}
               hasTVPreferredFocus={isOpen && activeMenuItemIndex === index}
             />

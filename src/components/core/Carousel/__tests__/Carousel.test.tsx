@@ -7,17 +7,18 @@ import { Carousel } from '../Carousel';
 
 describe('Carousel', () => {
   const mockData = ['item1', 'item2', 'item3'];
+
+  const mockDataAdapter = {
+    getItem: (index: number) =>
+      index >= 0 && index < mockData.length ? mockData[index] : undefined,
+    getItemCount: () => mockData.length,
+    getItemKey: (info: { item: string; index: number }) => `item-${info.index}`,
+    notifyDataError: () => false,
+  };
+
   const mockProps = {
-    data: mockData,
-    itemDimensions: [
-      {
-        view: () => <Text>test text</Text>,
-        dimension: { width: 200, height: 100 },
-      },
-    ],
+    dataAdapter: mockDataAdapter,
     renderItem: (info: { item: string }) => <Text>{info.item}</Text>,
-    getItemForIndex: (index: number) => () => <Text>{mockData[index]}</Text>,
-    keyProvider: (item: string) => item,
   };
 
   it('applies custom styles correctly', () => {

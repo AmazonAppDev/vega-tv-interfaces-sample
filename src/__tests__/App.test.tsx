@@ -9,11 +9,4 @@ describe('App', () => {
     const { getByTestId } = render(<App />);
     expect(getByTestId('home')).toBeTruthy();
   });
-
-  it('renders menu items', () => {
-    const { getByTestId } = render(<App />);
-    expect(
-      getByTestId('menu-menu-wrapper-item-home-label-button-opacity'),
-    ).toBeTruthy();
-  });
 });

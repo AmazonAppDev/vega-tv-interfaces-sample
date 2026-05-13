@@ -11,7 +11,7 @@ import { useVerticalPosters } from '@AppSrc/hooks/useVerticalPosters';
 import { getBrowseStackStyles } from './styles';
 
 export const BrowseStack = () => {
-  const browseStackRef = useRef(null);
+  const browseStackRef = useRef<View>(null);
   const styles = useThemedStyles(getBrowseStackStyles);
 
   const {
@@ -33,7 +33,7 @@ export const BrowseStack = () => {
     useTVFocus();
 
   useEffect(() => {
-    registerDestination('browseStack', browseStackRef);
+    registerDestination('browseStack', browseStackRef as React.RefObject<View>);
 
     return () => {
       unregisterDestination('browseStack');

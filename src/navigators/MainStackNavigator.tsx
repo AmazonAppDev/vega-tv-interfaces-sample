@@ -1,7 +1,10 @@
 import React from 'react';
 
 import type { Theme } from '@amazon-devices/react-navigation__native';
-import { NavigationContainer } from '@amazon-devices/react-navigation__native';
+import {
+  NavigationContainer,
+  NavigationIndependentTree,
+} from '@amazon-devices/react-navigation__native';
 
 import { useAppTheme } from '@AppTheme';
 import { MainNavigator } from './MainNavigator';
@@ -11,6 +14,12 @@ export const MainStackNavigator = () => {
 
   const navTheme: Theme = {
     dark: isDarkTheme,
+    fonts: {
+      regular: { fontFamily: 'System', fontWeight: '400' },
+      medium: { fontFamily: 'System', fontWeight: '500' },
+      bold: { fontFamily: 'System', fontWeight: '700' },
+      heavy: { fontFamily: 'System', fontWeight: '900' },
+    },
     colors: {
       primary: colors.primary,
       text: colors.onBackground,
@@ -22,8 +31,10 @@ export const MainStackNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={navTheme} independent={true}>
-      <MainNavigator />
-    </NavigationContainer>
+    <NavigationIndependentTree>
+      <NavigationContainer theme={navTheme}>
+        <MainNavigator />
+      </NavigationContainer>
+    </NavigationIndependentTree>
   );
 };

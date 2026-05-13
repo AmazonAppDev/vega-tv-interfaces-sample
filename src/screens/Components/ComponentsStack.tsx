@@ -22,7 +22,7 @@ export const ComponentsStack = () => {
         name="VerticalStack"
         component={VerticalStack}
         options={{
-          animationEnabled: false,
+          animation: 'none',
           headerShown: true,
           title: 'Vertical Stack',
         }}
@@ -31,7 +31,7 @@ export const ComponentsStack = () => {
         name="BrowseStack"
         component={BrowseStack}
         options={{
-          animationEnabled: false,
+          animation: 'none',
           headerShown: true,
           title: 'Browse Stack',
         }}

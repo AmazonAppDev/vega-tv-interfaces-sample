@@ -1,12 +1,9 @@
 import { useRef, useEffect, useCallback, useState } from 'react';
-import type { TouchableOpacity, Pressable } from 'react-native';
+import type { View } from 'react-native';
 import { BackHandler } from 'react-native';
 
 // Types
-type FocusableElement =
-  | React.ComponentRef<typeof TouchableOpacity>
-  | React.ComponentRef<typeof Pressable>
-  | null;
+type FocusableElement = View | null;
 
 interface FocusConfig {
   autoFocus?: boolean;
@@ -15,7 +12,7 @@ interface FocusConfig {
 }
 
 interface UseFocusManagerResult {
-  ref: React.RefObject<TouchableOpacity>;
+  ref: React.RefObject<View | null>;
   focus: () => void;
   blur: () => void;
   isFocused: boolean;
@@ -46,17 +43,19 @@ export const useFocusManager = (
   config: FocusConfig = {},
 ): UseFocusManagerResult => {
   const { autoFocus = false, onFocusChange, trapFocus = false } = config;
-  const ref = useRef<TouchableOpacity>(null);
+  const ref = useRef<View | null>(null);
   const [isFocused, setIsFocused] = useState(false);
 
   const focus = useCallback(() => {
-    ref.current?.focus();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (ref.current as any)?.focus();
     setIsFocused(true);
     onFocusChange?.(true);
   }, [onFocusChange]);
 
   const blur = useCallback(() => {
-    ref.current?.blur();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (ref.current as any)?.blur();
     setIsFocused(false);
     onFocusChange?.(false);
   }, [onFocusChange]);
@@ -68,12 +67,15 @@ export const useFocusManager = (
 
     if (trapFocus) {
       const handleBackPress = () => {
-        ref.current?.focus();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (ref.current as any)?.focus();
         return true;
       };
-      BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+      const subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        handleBackPress,
+      );
+      return () => subscription.remove();
     }
   }, [autoFocus, trapFocus, focus]);
 
@@ -102,7 +104,7 @@ export const useFocusManager = (
 export const useFocusCollection = (): UseFocusCollectionResult => {
   const refs = useRef(new Map<string, FocusableElement>());
   const [currentFocusedId, setCurrentFocusedId] = useState<string | null>(null);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const registerRef = (id: string, ref: FocusableElement) => {
     if (ref) {
@@ -113,16 +115,15 @@ export const useFocusCollection = (): UseFocusCollectionResult => {
   };
 
   const focusItem = useCallback((id: string) => {
-    // Clear any pending focus operations
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
 
-    // Debounce the focus operation by 150ms
     timeoutRef.current = setTimeout(() => {
       const element = refs.current.get(id);
       if (element) {
-        element.focus();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (element as any).focus();
         setCurrentFocusedId(id);
       }
     }, 150);
@@ -131,7 +132,8 @@ export const useFocusCollection = (): UseFocusCollectionResult => {
   const blurItem = useCallback((id: string) => {
     const element = refs.current.get(id);
     if (element) {
-      element.blur();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (element as any).blur();
       setCurrentFocusedId(null);
     }
   }, []);

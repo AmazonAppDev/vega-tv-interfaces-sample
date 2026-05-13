@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import type { Route } from '@amazon-devices/react-navigation__core';
 import { getFocusedRouteNameFromRoute } from '@amazon-devices/react-navigation__core';
+import type { DrawerContentComponentProps } from '@amazon-devices/react-navigation__drawer';
 import { createDrawerNavigator } from '@amazon-devices/react-navigation__drawer';
 
 import { MenuWrapper, MENU_WIDTHS } from '@AppComponents/features';
@@ -12,7 +13,9 @@ import { DetailsStack } from '@AppSrc/navigators/DetailsNavigator';
 
 const Drawer = createDrawerNavigator();
 
-const renderDrawerContent = () => <MenuWrapper />;
+const renderDrawerContent = (props: DrawerContentComponentProps) => (
+  <MenuWrapper navigation={props.navigation} />
+);
 
 const getNestedScreen = (route: Partial<Route<string>>) => {
   const routeName = getFocusedRouteNameFromRoute(route);

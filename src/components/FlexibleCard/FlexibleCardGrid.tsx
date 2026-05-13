@@ -1,11 +1,10 @@
 import React, { memo, useCallback, useRef, useMemo, useState } from 'react';
-import { ActivityIndicator, Dimensions, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
-import { FlashList } from '@amazon-devices/shopify__flash-list';
+import { FlashList, type FlashListRef } from '@shopify/flash-list';
 
 import { useThemedStyles } from '@AppTheme';
 import {
-  getAverageRowHeight,
   getCardHeight,
   usePosterRowsWithSkeletonPreload,
 } from '@AppSrc/hooks/usePosterSections';
@@ -15,8 +14,6 @@ import type {
 } from '@AppSrc/hooks/usePosterSections';
 import { POSTER_ROW_VARIATIONS } from './helpers';
 import { getFlexibleCardStyle } from './styles';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 // Type for carousel items
 type CarouselItem = {
@@ -79,7 +76,7 @@ const FLASHLIST_FILLER = 169;
 export const FlexibleCardGrid = memo(() => {
   const styles = useThemedStyles(getFlexibleCardStyle);
 
-  const verticalRef = useRef<FlashList<PosterRowData>>(null);
+  const verticalRef = useRef<FlashListRef<PosterRowData>>(null);
 
   const [visibleRowIndices, setVisibleRowIndices] = useState<Set<number>>(
     new Set(),
@@ -97,27 +94,16 @@ export const FlexibleCardGrid = memo(() => {
     return [{ type: 'hero' } as const, ...contentRows];
   }, [contentRows]);
 
-  const avgRowHeight = useMemo(() => getAverageRowHeight(), []);
-
-  const totalEstimatedHeight = rows.reduce((sum, item) => {
-    if (item.type === 'hero') {
-      return sum + CAROUSEL_ROW_DISTANCE;
-    }
-
-    return (
-      sum +
-      getCardHeight(item.layoutConfig.size, item.layoutConfig.direction) +
-      FLASHLIST_FILLER
-    );
-  }, 0);
-
-  const scrollVertically = useCallback((index: number) => {
-    verticalRef.current?.scrollToIndex({
-      animated: true,
-      index: index + 1,
-      viewPosition: 0.5,
-    });
-  }, []);
+  // Trigger pagination when focus approaches the end of loaded rows
+  const onRowFocus = useCallback(
+    (rowIndex: number) => {
+      const totalRows = rows.length;
+      if (hasNextPage && rowIndex >= totalRows - 3) {
+        void fetchNextPage();
+      }
+    },
+    [rows.length, hasNextPage, fetchNextPage],
+  );
 
   const renderItem = useCallback(
     ({ item }: { item: PosterRowData }) => {
@@ -139,12 +125,12 @@ export const FlexibleCardGrid = memo(() => {
       return (
         <RowComponent
           row={item}
-          scrollVertically={scrollVertically}
           visibleRowIndices={visibleRowIndices}
+          onRowFocus={onRowFocus}
         />
       );
     },
-    [scrollVertically, styles, visibleRowIndices],
+    [styles, visibleRowIndices, onRowFocus],
   );
 
   /**
@@ -204,7 +190,7 @@ export const FlexibleCardGrid = memo(() => {
   );
 
   return (
-    <View>
+    <View style={styles.gridContainer}>
       {isFetchingNextPage && (
         <ActivityIndicator
           style={styles.activityIndicator}
@@ -220,17 +206,12 @@ export const FlexibleCardGrid = memo(() => {
         }
         renderItem={renderItem}
         getItemType={getItemType}
-        estimatedItemSize={avgRowHeight}
-        estimatedListSize={{
-          height: totalEstimatedHeight - CAROUSEL_ROW_DISTANCE,
-          width: SCREEN_WIDTH,
-        }}
         overrideItemLayout={overrideItemLayout}
         drawDistance={Number.MAX_SAFE_INTEGER}
-        scrollEnabled={false}
-        removeClippedSubviews={true}
+        scrollEnabled={true}
+        removeClippedSubviews={false}
         onEndReached={() => hasNextPage && fetchNextPage()}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={2}
         scrollEventThrottle={20}
         decelerationRate={0.92}
         onViewableItemsChanged={handleViewableItemsChanged}

@@ -14,7 +14,12 @@ const HomeMock = () => <Text>Home</Text>;
 
 const Drawer = createDrawerNavigator();
 
-const renderDrawerContent = () => <MenuWrapper />;
+const mockNavigation = {
+  navigate: jest.fn(),
+  closeDrawer: jest.fn(),
+  openDrawer: jest.fn(),
+};
+const renderDrawerContent = () => <MenuWrapper navigation={mockNavigation} />;
 
 const DrawerWrapper = () => {
   return (

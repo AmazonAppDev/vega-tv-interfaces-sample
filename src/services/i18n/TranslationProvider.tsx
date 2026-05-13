@@ -5,7 +5,7 @@ import type { Languages } from '@AppServices/i18n/types';
 import { TranslationContext } from '@AppServices/i18n/useTranslation';
 
 export type TranslationProviderProps = {
-  children: ReactNode;
+  children?: ReactNode;
   defaultLocale?: Languages['key'];
 };
 export const TranslationProvider = ({

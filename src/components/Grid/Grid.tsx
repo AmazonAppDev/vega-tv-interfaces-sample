@@ -1,8 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react';
-import type { LayoutChangeEvent } from 'react-native';
 import { ActivityIndicator, Dimensions, View } from 'react-native';
 
-import { FlashList } from '@amazon-devices/shopify__flash-list';
+import { FlashList, type FlashListRef } from '@shopify/flash-list';
 
 import { useThemedStyles } from '@AppTheme';
 import { ExampleModal } from '@AppComponents/ExampleModal/ExampleModal';
@@ -64,8 +63,6 @@ export const TOTAL_WIDTH = Math.min(
  *    - Correcting the item height ensures smooth and consistent scrolling.
  *    - Aligns the virtualized list with real item sizes.
  */
-const FLASHLIST_CORRECTION = 120;
-
 interface GridItemProps {
   id: string;
   title: string;
@@ -89,18 +86,20 @@ export const Grid = ({
   isFetchingNextPage,
   onEndReached,
 }: GridProps) => {
-  const [listSize, setListSize] = useState({
-    width: TOTAL_WIDTH,
-    height: SCREEN_HEIGHT - 220,
-  });
-
   const styles = useThemedStyles(GridStyle);
-  const listRef = useRef<FlashList<GridItemProps>>(null);
+  const listRef = useRef<FlashListRef<GridItemProps>>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const renderItem = useCallback(
-    ({ item }: { item: GridItemProps }) => (
-      <View style={styles.gridItemWrapper}>
+    ({ item, index }: { item: GridItemProps; index: number }) => (
+      <View
+        style={styles.gridItemWrapper}
+        onFocus={() => {
+          if (index >= items.length - COLUMNS * 3) {
+            onEndReached?.();
+          }
+        }}
+      >
         <MemoizedGridItem
           id={item.id}
           imageUrl={item.imageUrl}
@@ -108,28 +107,8 @@ export const Grid = ({
         />
       </View>
     ),
-    [styles.gridItemWrapper],
+    [styles.gridItemWrapper, items.length, onEndReached],
   );
-
-  /**
-   * Handles the layout measurement of the grid container and updates the list size state.
-   * This is crucial for FlashList's performance optimization as it:
-   * 1. Provides accurate dimensions for virtual rendering calculations
-   * 2. Helps FlashList determine the visible area and optimize item rendering
-   * 3. Ensures proper initial rendering and scrolling behavior
-   * 4. Improves the performance of the grid by reducing unnecessary re-renders
-   *
-   * Without it FlashList will try to render all items at once, which can lead to performance
-   * issues because of the large number of items and we will have a lot of re-renders since
-   * the Virtualization will be disabled.
-   * @param event - Layout event containing width and height measurements
-   */
-  const handleGridContainerLayout = useCallback((event: LayoutChangeEvent) => {
-    const { width, height } = event.nativeEvent.layout;
-    if (width > 0 && height > 0) {
-      setListSize({ width, height });
-    }
-  }, []);
 
   if ((isFetching || isLoading) && items.length === 0) {
     return <ActivityIndicator />;
@@ -138,22 +117,19 @@ export const Grid = ({
   return (
     <FocusGuideView autoFocus trapFocusRight>
       <View style={styles.grid}>
-        <View style={styles.gridContainer} onLayout={handleGridContainerLayout}>
+        <View style={styles.gridContainer}>
           <FlashList
             ref={listRef}
             data={items}
             keyExtractor={item => item.id}
             renderItem={renderItem}
             numColumns={COLUMNS}
-            estimatedItemSize={GRID_ITEM_HEIGHT_FINAL}
-            estimatedListSize={listSize}
-            removeClippedSubviews
+            removeClippedSubviews={false}
+            scrollEnabled={true}
+            drawDistance={Number.MAX_SAFE_INTEGER}
             onEndReached={onEndReached}
-            onEndReachedThreshold={0.5}
+            onEndReachedThreshold={2}
             bounces={false}
-            overrideItemLayout={layout => {
-              layout.size = GRID_ITEM_HEIGHT_FINAL - FLASHLIST_CORRECTION;
-            }}
             ListFooterComponent={() => {
               if (isFetchingNextPage && items.length > 0) {
                 return <ActivityIndicator />;

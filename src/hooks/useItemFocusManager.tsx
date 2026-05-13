@@ -1,16 +1,16 @@
 import type { RefObject } from 'react';
 import { useCallback } from 'react';
-import type { TouchableOpacity } from 'react-native';
+import type { View } from 'react-native';
 
 import {
   findNodeHandle,
   FocusManager,
 } from '@amazon-devices/react-native-kepler';
-import type { FlashList } from '@amazon-devices/shopify__flash-list';
+import type { FlashListRef } from '@shopify/flash-list';
 
 type UseItemFocusManagerParams<T> = {
-  itemRefs: RefObject<Array<TouchableOpacity | null> | null>; // Reference to an array of TouchableOpacity elements
-  flashListRef: RefObject<FlashList<T>>; // Reference to the FlashList component
+  itemRefs: RefObject<Array<View | null> | null>; // Reference to an array of focusable elements
+  flashListRef: RefObject<FlashListRef<T> | null>; // Reference to the FlashList component
   dataLength: number; // Total number of items in the list
   isCircular?: boolean; // Optional: Whether the list should wrap around
   orientation?: 'vertical' | 'horizontal'; // Optional: Orientation of the list
@@ -25,7 +25,7 @@ type UseItemFocusManagerParams<T> = {
  *
  * @param {Object} params - The parameters for the hook.
  * @param {RefObject<Array<TouchableOpacity | null> | null>} params.itemRefs - Reference to an array of TouchableOpacity elements.
- * @param {RefObject<FlashList<T>>} params.flashListRef - Reference to the FlashList component.
+ * @param {RefObject<FlashListRef<T>>} params.flashListRef - Reference to the FlashList component.
  * @param {number} params.dataLength - Total number of items in the list.
  * @param {boolean} [params.isCircular=false] - Optional: Whether the list should wrap around.
  * @param {'vertical' | 'horizontal'} [params.orientation='vertical'] - Optional: Orientation of the list.
@@ -55,7 +55,7 @@ export const useItemFocusManager = <T,>({
 }: UseItemFocusManagerParams<T>) => {
   // Callback to update child references
   const handleChildRefsUpdate = useCallback(
-    (index: number) => (ref: TouchableOpacity | null) => {
+    (index: number) => (ref: View | null) => {
       if (!ref || !itemRefs.current) {
         return; // Exit if ref is null or itemRefs is not initialized
       }
@@ -73,8 +73,8 @@ export const useItemFocusManager = <T,>({
         prevIndex = index - 1;
       }
 
-      let nextRef: TouchableOpacity | null = null; // Initialize next reference
-      let prevRef: TouchableOpacity | null = null; // Initialize previous reference
+      let nextRef: View | null = null; // Initialize next reference
+      let prevRef: View | null = null; // Initialize previous reference
 
       if (itemRefs.current) {
         // Get the next and previous references if they exist
@@ -105,7 +105,7 @@ export const useItemFocusManager = <T,>({
       if (isLastItem && currentHandle) {
         ref.setNativeProps({
           onFocus: () => {
-            flashListRef.current?.scrollToIndex({
+            void flashListRef.current?.scrollToIndex({
               index: 0,
               animated: true,
             });

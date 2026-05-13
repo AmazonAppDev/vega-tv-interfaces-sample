@@ -1,9 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
 
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
 export const getFlexibleCardStyle = (theme: AppTheme) =>
   StyleSheet.create({
+    gridContainer: {
+      flex: 1,
+      width: SCREEN_WIDTH,
+    },
     container: {
       margin: 10,
       position: 'relative',

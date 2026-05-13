@@ -57,8 +57,12 @@ export const getHomeStyles = ({ colors, typography, isDarkTheme }: AppTheme) =>
     },
     text: {
       marginTop: 20,
+      marginLeft: 50,
       fontSize: typography.size?.fontSize?.headline?.sm,
       color: isDarkTheme ? colors.onPrimary : colors.primary,
+    },
+    flashListHorizontal: {
+      marginLeft: 50,
     },
     childText: {
       fontSize: 16,

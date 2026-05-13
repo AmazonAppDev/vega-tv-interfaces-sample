@@ -90,7 +90,9 @@ export const FiltersScreen: React.FC = () => {
               }}
               nextFocusDown={
                 isLastItem && closeButtonFocus.ref.current
-                  ? (findNodeHandle(closeButtonFocus.ref.current) ?? undefined)
+                  ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    (findNodeHandle(closeButtonFocus.ref.current as any) ??
+                    undefined)
                   : undefined
               }
               hasTVPreferredFocus={isFirstItem && isOpen}

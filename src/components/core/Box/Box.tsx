@@ -210,7 +210,7 @@ interface BoxWithPressProps extends BaseBoxProps {
 type BoxProps = BaseBoxProps & Partial<BoxWithPressProps> & TVProps;
 
 // ============= Box Component =============
-export const Box = React.forwardRef<TouchableOpacity, BoxProps>(
+export const Box = React.forwardRef<View, BoxProps>(
   (
     {
       children,

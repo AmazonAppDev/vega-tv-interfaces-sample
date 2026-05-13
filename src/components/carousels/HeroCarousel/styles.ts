@@ -29,7 +29,6 @@ export const getHeroCarouselStyles = (theme: AppTheme) =>
 
     // Slide
     slideContainer: {
-      ...StyleSheet.absoluteFillObject,
       flex: 1,
       width: '100%',
       height: '100%',
@@ -54,6 +53,7 @@ export const getHeroCarouselStyles = (theme: AppTheme) =>
       padding: 30,
       borderRadius: 12,
       maxWidth: '30%',
+      marginLeft: 50,
     },
     title: {
       fontSize: 38,

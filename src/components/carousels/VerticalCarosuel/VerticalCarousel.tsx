@@ -1,9 +1,12 @@
 import React, { useCallback, useRef, useState } from 'react';
-import type { LayoutChangeEvent } from 'react-native';
-import { TouchableOpacity } from 'react-native';
-import { Text, View } from 'react-native';
+import {
+  type View as ViewType,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
-import { FlashList } from '@amazon-devices/shopify__flash-list';
+import { FlashList, type FlashListRef } from '@shopify/flash-list';
 
 import { useThemedStyles } from '@AppTheme';
 import { ImageTile } from '@AppComponents/core';
@@ -15,13 +18,8 @@ import { getVerticalStackStyles } from './styles';
 
 export const VerticalCarousel = ({ data }: { data: Item[] }) => {
   const styles = useThemedStyles(getVerticalStackStyles);
-  const flashListRef = useRef<FlashList<Item>>(null);
-  const itemRefs = useRef<TouchableOpacity[]>([]);
-  const [listSize, setListSize] = useState<{ width: number; height: number }>({
-    width: 779,
-    height: data.length * 205,
-  });
-
+  const flashListRef = useRef<FlashListRef<Item>>(null);
+  const itemRefs = useRef<Array<ViewType | null>>([]);
   const [albumIndex, setAlbumIndex] = useState(1);
 
   const handleChildRefsUpdate = useItemFocusManager<Item>({
@@ -72,13 +70,6 @@ export const VerticalCarousel = ({ data }: { data: Item[] }) => {
     [],
   );
 
-  const handleGridContainerLayout = useCallback((event: LayoutChangeEvent) => {
-    const { width, height } = event.nativeEvent.layout;
-    if (width > 0 && height > 0) {
-      setListSize({ width, height });
-    }
-  }, []);
-
   return (
     <View style={[styles.container]}>
       <View style={styles.column}>
@@ -97,21 +88,19 @@ export const VerticalCarousel = ({ data }: { data: Item[] }) => {
         </View>
       </View>
       <View style={[styles.column]}>
-        <View
-          style={styles.rightContainer}
-          onLayout={handleGridContainerLayout}
-        >
+        <View style={styles.rightContainer}>
           <Text style={styles.headerText}>Shopify FlashList</Text>
           <FlashList
             ref={flashListRef}
             data={data}
             renderItem={ItemView}
             keyExtractor={keyProvider}
-            estimatedItemSize={185}
-            estimatedListSize={listSize}
             horizontal={false}
             bounces={false}
             initialScrollIndex={0}
+            scrollEnabled={true}
+            removeClippedSubviews={false}
+            drawDistance={Number.MAX_SAFE_INTEGER}
           />
         </View>
       </View>

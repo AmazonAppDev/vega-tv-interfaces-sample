@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { FlashList } from '@amazon-devices/shopify__flash-list';
+import { FlashList } from '@shopify/flash-list';
 import { screen } from '@testing-library/react-native';
 
 import { Avatar, ImageTile } from '@AppComponents/core';
@@ -10,7 +10,7 @@ import { renderWithTheme } from '@AppTestUtils/render';
 import { VerticalCarousel } from '../VerticalCarousel';
 
 // Mock the required dependencies
-jest.mock('@amazon-devices/shopify__flash-list', () => ({
+jest.mock('@shopify/flash-list', () => ({
   FlashList: jest.fn(({ data, renderItem, keyExtractor }) => (
     <>
       {data.map((item: Item, index: number) =>
@@ -101,7 +101,6 @@ describe('VerticalCarousel', () => {
 
     expect(flashList.props).toMatchObject({
       data: mockData,
-      estimatedItemSize: 185,
       horizontal: false,
       bounces: false,
     });
@@ -125,7 +124,8 @@ describe('VerticalCarousel', () => {
     const { UNSAFE_root } = renderWithTheme(
       <VerticalCarousel data={mockData} />,
     );
-    const container = UNSAFE_root.findByType(View);
-    expect(container.props['style']).toBeDefined();
+    const views = UNSAFE_root.findAllByType(View);
+    const styledView = views.find(v => v.props['style'] !== undefined);
+    expect(styledView).toBeDefined();
   });
 });

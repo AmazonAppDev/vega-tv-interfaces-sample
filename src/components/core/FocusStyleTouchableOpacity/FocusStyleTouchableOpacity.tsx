@@ -40,10 +40,12 @@ export const FocusStyleTouchableOpacity = ({
       ]}
       onFocus={event => {
         setFocused(true);
+        // @ts-expect-error Kepler event types extend RN event types with requestTVFocus
         onFocus?.(event);
       }}
       onBlur={event => {
         setFocused(false);
+        // @ts-expect-error Kepler event types extend RN event types with requestTVFocus
         onBlur?.(event);
       }}
       {...props}

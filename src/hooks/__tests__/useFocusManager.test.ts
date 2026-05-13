@@ -1,4 +1,4 @@
-import type { TouchableOpacity } from 'react-native';
+import type { View } from 'react-native';
 import { BackHandler } from 'react-native';
 
 import { act, renderHook } from '@testing-library/react-native';
@@ -17,15 +17,7 @@ const createMockRef = () =>
   ({
     focus: jest.fn(),
     blur: jest.fn(),
-    setOpacityTo: jest.fn(),
-    setTimeout: jest.fn(),
-    clearTimeout: jest.fn(),
-    setInterval: jest.fn(),
-    clearInterval: jest.fn(),
-    measure: jest.fn(),
-    measureLayout: jest.fn(),
-    measureInWindow: jest.fn(),
-  }) as unknown as TouchableOpacity;
+  }) as unknown as View;
 
 describe('useFocusManager', () => {
   beforeEach(() => {
@@ -72,13 +64,14 @@ describe('useFocusManager', () => {
     );
 
     // Test cleanup
+    const mockRemove = jest.fn();
+    (BackHandler.addEventListener as jest.Mock).mockReturnValue({
+      remove: mockRemove,
+    });
     const { unmount } = renderHook(() => useFocusManager({ trapFocus: true }));
     unmount();
 
-    expect(BackHandler.removeEventListener).toHaveBeenCalledWith(
-      'hardwareBackPress',
-      expect.any(Function),
-    );
+    expect(mockRemove).toHaveBeenCalled();
   });
 });
 

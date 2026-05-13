@@ -7,9 +7,12 @@ import type { NavigationContainerRef } from '@amazon-devices/react-navigation__n
 import {
   DrawerActions,
   NavigationContainer,
+  NavigationIndependentTree,
 } from '@amazon-devices/react-navigation__native';
 
 const { width } = Dimensions.get('window');
+
+const flexStyle = { flex: 1 } as const;
 
 /**
  * Type definition for the drawer navigation parameters
@@ -73,7 +76,7 @@ type DrawerWrapperProps = {
   overlayColor?: string;
   drawerType?: 'front' | 'back' | 'slide';
   screenOptions?: object;
-  navigationRef?: React.RefObject<DrawerNavigationType>;
+  navigationRef?: React.RefObject<DrawerNavigationType | null>;
 };
 
 /**
@@ -114,7 +117,6 @@ export const DrawerWrapper = ({
 
   const closeDrawer = () => {
     setIsOpen(false);
-    drawerRef.current?.dispatch(DrawerActions.closeDrawer());
   };
 
   const toggleDrawer = () => {
@@ -126,43 +128,47 @@ export const DrawerWrapper = ({
     <DrawerContext.Provider
       value={{ isOpen, openDrawer, closeDrawer, toggleDrawer, setIsOpen }}
     >
-      <NavigationContainer independent={true} ref={drawerRef}>
-        <Drawer.Navigator
-          screenOptions={{
-            drawerStyle: {
-              width: drawerWidth,
-              display: isOpen ? 'flex' : 'none',
-            },
-            headerShown: false,
-            overlayColor,
-            drawerType,
-            drawerPosition,
-            swipeEnabled: false,
-            ...screenOptions,
-          }}
-          drawerContent={() => (
-            <DrawerContent
-              aria-modal={true}
-              aria-hidden={!isOpen}
-              aria-live={isOpen ? 'polite' : 'off'}
-            />
-          )}
-        >
-          <Drawer.Screen
-            name="Drawer"
-            options={{
-              title: 'Drawer',
+      <NavigationIndependentTree>
+        <NavigationContainer ref={drawerRef}>
+          <Drawer.Navigator
+            screenOptions={{
+              drawerStyle: {
+                width: drawerWidth,
+                display: isOpen ? 'flex' : 'none',
+              },
+              headerShown: false,
+              overlayColor: isOpen ? overlayColor : 'transparent',
+              drawerType,
+              drawerPosition,
               swipeEnabled: false,
+              ...screenOptions,
             }}
+            drawerContent={() =>
+              isOpen ? (
+                <DrawerContent
+                  aria-modal={true}
+                  aria-hidden={!isOpen}
+                  aria-live={isOpen ? 'polite' : 'off'}
+                />
+              ) : null
+            }
           >
-            {() => (
-              <TVFocusGuideView trapFocusDown trapFocusUp style={{ flex: 1 }}>
-                {children}
-              </TVFocusGuideView>
-            )}
-          </Drawer.Screen>
-        </Drawer.Navigator>
-      </NavigationContainer>
+            <Drawer.Screen
+              name="Drawer"
+              options={{
+                title: 'Drawer',
+                swipeEnabled: false,
+              }}
+            >
+              {() => (
+                <TVFocusGuideView trapFocusDown trapFocusUp style={flexStyle}>
+                  {children}
+                </TVFocusGuideView>
+              )}
+            </Drawer.Screen>
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </NavigationIndependentTree>
     </DrawerContext.Provider>
   );
 };

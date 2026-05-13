@@ -136,6 +136,8 @@ export const HeroCarousel: React.FC<CarouselProps> = ({
   // Ref to track if auto-scrolling is currently active to prevent duplicate intervals
   const isAutoScrolling = useRef(false);
 
+  const scrollItemWidth = useRef(SCREEN_WIDTH / 2);
+
   /**
    * Handles layout changes and updates the carousel width
    * This ensures proper slide width calculations when the screen size changes
@@ -149,23 +151,19 @@ export const HeroCarousel: React.FC<CarouselProps> = ({
   };
 
   /**
-   * Scrolls to a specific slide index with optional animation
-   * Uses a small timeout to ensure proper rendering before scrolling
+   * Scrolls to a specific slide index using the real item width.
+   * Uses scrollToOffset with the Fabric-corrected item width to ensure
+   * each scroll advances exactly one slide.
    * @param index - The target slide index to scroll to
-   * @param animated - Whether to animate the scroll transition
    */
   const scrollToIndex = useCallback(
     (index: number, animated = true) => {
       if (layoutWidth === 0 || !flatListRef.current) {
         return;
       }
-
-      setTimeout(() => {
-        flatListRef.current?.scrollToIndex({
-          index,
-          animated,
-        });
-      }, 20);
+      const offset = index * scrollItemWidth.current;
+      // @ts-ignore - scrollToOffset exists on Animated.FlatList
+      flatListRef.current.scrollToOffset({ offset, animated });
     },
     [layoutWidth],
   );
@@ -178,7 +176,7 @@ export const HeroCarousel: React.FC<CarouselProps> = ({
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: event => {
       const offsetX = event.contentOffset.x;
-      const index = Math.round(offsetX / layoutWidth);
+      const index = Math.round(offsetX / scrollItemWidth.current);
       runOnJS(setCurrentIndex)(index);
       isAutoScroll.value = false;
     },
@@ -318,7 +316,6 @@ export const HeroCarousel: React.FC<CarouselProps> = ({
         })}
         initialNumToRender={1}
         maxToRenderPerBatch={2}
-        windowSize={3}
         removeClippedSubviews
       />
 

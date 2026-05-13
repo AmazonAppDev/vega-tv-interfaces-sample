@@ -83,14 +83,12 @@ export const ExampleModal = ({
               focusedButton === BUTTON_STATE.startWorkout &&
                 styles.modalButtonFocused,
             ]}
-            onPress={() => focusItem(BUTTON_REF.startWorkout(imageUrl))}
+            onPress={() => {}}
             onFocus={() => {
               setFocusedButton(BUTTON_STATE.startWorkout);
-              focusItem(BUTTON_REF.startWorkout(imageUrl));
             }}
             onBlur={() => {
               setFocusedButton(null);
-              blurItem(BUTTON_REF.startWorkout(imageUrl));
             }}
           >
             <Text style={styles.modalButtonText}>▶ Start workout</Text>

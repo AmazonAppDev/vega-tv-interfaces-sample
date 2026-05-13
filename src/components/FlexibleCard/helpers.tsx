@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import { InteractionManager, type ViewStyle } from 'react-native';
+import { type ViewStyle } from 'react-native';
 
-import type { FlashList } from '@amazon-devices/shopify__flash-list';
+import type { FlashListRef } from '@shopify/flash-list';
 
 import { FlexibleCardRow } from '@AppComponents/FlexibleCard/FlexibleCardRow';
 import type { FlexibleCardRowProps } from '@AppComponents/FlexibleCard/FlexibleCardRow';
@@ -14,19 +14,6 @@ import type {
 import type { BirdItemHome } from '@AppUtils/birdImageUtils';
 
 // ──────────────── SHARED TYPES ────────────────
-
-/**
- * Function type for vertical scrolling behavior
- * @param index - The index to scroll to
- */
-type ScrollVertically = (index: number) => void;
-
-/**
- * Function type for horizontal scrolling behavior
- * @param rowIndex - The index of the row
- * @param index - The index within the row to scroll to
- */
-type ScrollHorizontally = (rowIndex: number, index: number) => void;
 
 /**
  * Represents a carousel item with its display properties
@@ -46,7 +33,7 @@ type CarouselItem = {
  */
 interface HeroRowProps {
   row: PosterRowData;
-  verticalRef: React.RefObject<FlashList<PosterRowData>>;
+  verticalRef: React.RefObject<FlashListRef<PosterRowData> | null>;
   styles: {
     carouselContainer: ViewStyle;
   };
@@ -58,8 +45,8 @@ interface HeroRowProps {
  */
 interface GenericRowProps {
   row: PosterRowData;
-  scrollVertically: ScrollVertically;
-  scrollHorizontally: ScrollHorizontally;
+  visibleRowIndices?: Set<number>;
+  onRowFocus?: (rowIndex: number) => void;
 }
 
 // ──────────────── COMPARATORS ────────────────
@@ -78,15 +65,13 @@ const checkIfGenericRowDataSame = (
   nextProps: GenericRowProps,
 ) =>
   prevProps.row === nextProps.row &&
-  prevProps.scrollVertically === nextProps.scrollVertically &&
-  prevProps.scrollHorizontally === nextProps.scrollHorizontally;
+  prevProps.visibleRowIndices === nextProps.visibleRowIndices &&
+  prevProps.onRowFocus === nextProps.onRowFocus;
 
 const checkIfFlexibleRowDataSame = (
   prevProps: FlexibleCardRowProps,
   nextProps: FlexibleCardRowProps,
-) =>
-  prevProps.row === nextProps.row &&
-  prevProps.scrollVertically === nextProps.scrollVertically;
+) => prevProps.row === nextProps.row;
 
 // ──────────────── ROW COMPONENTS ────────────────
 
@@ -103,8 +88,8 @@ const HeroRow = memo(({ verticalRef, styles, carouselData }: HeroRowProps) => {
       style={styles.carouselContainer}
       // @ts-ignore - FocusGuideView is not typed but should support onFocus
       onFocus={() => {
-        void InteractionManager.runAfterInteractions(() => {
-          verticalRef.current?.scrollToIndex({
+        requestAnimationFrame(() => {
+          void verticalRef.current?.scrollToIndex({
             animated: false,
             index: 0,
             viewPosition: 0,
@@ -122,13 +107,22 @@ const HeroRow = memo(({ verticalRef, styles, carouselData }: HeroRowProps) => {
  * A flexible row component that can display different types of content
  * Renders a FlexibleCardRow for non-hero content types
  */
-const GenericCardRow = memo(({ row, scrollVertically }: GenericRowProps) => {
-  if (row.type === 'hero') {
-    return null;
-  }
+const GenericCardRow = memo(
+  ({ row, visibleRowIndices, onRowFocus }: GenericRowProps) => {
+    if (row.type === 'hero') {
+      return null;
+    }
 
-  return <FlexibleCardRow row={row} scrollVertically={scrollVertically} />;
-}, checkIfGenericRowDataSame);
+    return (
+      <FlexibleCardRow
+        row={row}
+        visibleRowIndices={visibleRowIndices}
+        onRowFocus={onRowFocus}
+      />
+    );
+  },
+  checkIfGenericRowDataSame,
+);
 
 /**
  * FlexibleRow Component

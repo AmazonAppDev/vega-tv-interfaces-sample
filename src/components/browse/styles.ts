@@ -27,6 +27,7 @@ export const getBrowseStyle = (theme: AppTheme) =>
       marginHorizontal: 8,
       padding: 0,
       borderRadius: 50,
+      borderWidth: 3,
     },
     activeTab: {
       backgroundColor: theme.colors.primary,
