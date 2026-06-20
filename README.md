@@ -21,12 +21,12 @@ Key features include:
 * Practical examples of focus management in complex layouts.
 
 
-**Note**: While this app contains recommendations, there will always be different approaches on how to build the components or screen or libraries used (FlashList). This guide is a starting point for what needs to be done, but we encourage you to explore and adopt best practices that suit your specific project requirements but always [think in React](https://react.dev/learn/thinking-in-react).
+**Note**: While this app contains recommendations, there will always be different approaches on how to build the components or screen or libraries used (FlashList). This guide is a starting point for what must be done, and you should explore and adopt best practices that suit your specific project requirements but always [think in React](https://react.dev/learn/thinking-in-react).
           
           
 ### Why TV interfaces are different
           
-TV applications are navigated primarily with directional controls (up, down, left, right) rather than touch. This fundamentally changes how users interact with your app:
+TV applications are navigated primarily with directional controls (up, down, left, right) rather than touch. This difference fundamentally changes how users interact with your app:
           
  * Users can only interact with one element at a time (the focused element).
  * Navigation paths between elements must be clear and predictable.
@@ -73,7 +73,7 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/set
 
 1. At the command prompt, navigate to the Vega TV Interfaces Sample App source code directory. 
 
-2. To install the app dependencies, run the following command. 
+2. To install the app dependencies, run the following command. The installation can take several minutes to complete.
 
    ```
    npm install
@@ -95,7 +95,7 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/set
 
 #### Vega Virtual Device
 
-1. To start the Vega Virtual Device, at the command prompt, run the following command.
+1. To start the Vega Virtual Device at the command prompt, run the following command.
 
    ```
    vega virtual-device start
@@ -103,13 +103,13 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/set
 
 2. To install and launch the app on the Vega Virtual Device, run the following command, depending on your device architecture.
 
-   - On Mac M-series based devices. 
+   - On Mac M-series-based devices. 
       
       ```
       vega run-app build/aarch64-release/keplertvinterfaces_aarch64.vpkg
       ```
 
-   - On x86_64 based devices.
+   - On x86_64-based devices.
       
      ```
      vega run-app build/x86_64-release/keplertvinterfaces_x86_64.vpkg
@@ -164,7 +164,7 @@ Testing the app
 
 ### React Native Testing Library (RNTL)
 
-RNTL allows us to write tests that closely resemble how users interact with our app. It provides utilities for rendering components, finding elements, and simulating user actions.
+RNTL lets you write tests that closely resemble how users interact with the app. It provides utilities for rendering components, finding elements, and simulating user actions.
 
 ### Test Commands
 
@@ -185,7 +185,7 @@ For more detailed information about our testing setup, best practices, and custo
 Services
 --------
 
-The app is structured to delegate specific tasks to encapsulated units of logic known as services. Each service is designed to handle a particular functionality, allowing for clean separation of concerns and ensuring that the logic is reusable and maintainable. This approach allows services to be potentially extracted and used in other applications with ease.
+The app is structured to delegate specific tasks to encapsulated units of logic known as services. Each service is designed to handle a particular functionality, enabling clean separation of concerns and ensuring that the logic is reusable and maintainable. This approach enables services to be potentially extracted and used in other applications with ease.
 
 - [**AppConfig Service**](src/services/appConfig/README.md): Manages environment variables defined in the `.env` file, enabling the app to read and apply configuration settings.
 
@@ -210,9 +210,9 @@ You can customize the UI by changing the color scheme and font settings.
 
 **To customize the color theme**
 
-1. Open any color scheme generator for Material Design, for example, https://material-foundation.github.io/material-theme-builder/ and create color scheme that you prefer.
+1. Open any color scheme generator for Material Design, for example, https://material-foundation.github.io/material-theme-builder/ and create a color scheme that you prefer.
 
-2. Export created theme as a JSON file.
+2. Export the created theme as a JSON file.
 
 3. Go to the **palette.ts** (../../src/theme/palette.ts) file and replace the `lightPalette` and `darkPalette` objects to the generated.
 
@@ -245,7 +245,7 @@ You can customize the UI by changing the color scheme and font settings.
 
 ### Detailed theming information
 
-As a part of the Navigation Interface Focus Examples app, the `kepler-ui-components` library is used for the UI layer. All files related to the configuration of the theme should be kept in the **src/theme** directory.
+The Navigation Interface Focus Examples app uses the `kepler-ui-components` library for the UI layer. Keep all files related to theme configuration in the **src/theme** directory.
 
 **The src/theme/ directory structure:**
 
@@ -264,7 +264,7 @@ src/theme/
 
 ### Create tokens for components
 
-**To modify pre-defined tokens and follow defined palette**
+**To modify predefined tokens and follow a defined palette**
 
 1. Create a new file using the following format.
 
@@ -331,9 +331,9 @@ New tokens are visible after you reload your app.
 Components
 ----------
 
-To provide default props and customize components, importing directly from `@amazon-devices/kepler-ui-components` is blocked across the app.
+To provide default props and customize components, the app blocks direct imports from `@amazon-devices/kepler-ui-components`.
 
-Every component from UI library should have a created abstraction in the `src/components/core` directory. Please use components from `@AppComponents/core` or create a new one if it doesn't exist.
+Every component from the UI library should have a created abstraction in the `src/components/core` directory. Use components from `@AppComponents/core` or create a new one if it doesn't exist.
 
 
 ```jsx
@@ -355,7 +355,7 @@ import { Button } from '@amazon-devices/kepler-ui-components';
 
 #### `useAppTheme`
 
-The `useAppTheme` hook is a custom hook built on top of the `useTheme` hook from the `@amazon-devices/kepler-ui-components` package. It provides an easy way to access the the colors of the current theme, and typography from the theme of your application, which conforms to the `AppTheme` type.
+The `useAppTheme` hook is a custom hook built on top of the `useTheme` hook from the `@amazon-devices/kepler-ui-components` package. It provides an easy way to access the colors of the current theme and typography from the theme of your application, which conforms to the `AppTheme` type.
 
 ##### Usage
 
@@ -371,7 +371,7 @@ const { isDarkTheme, colors, typography } = useAppTheme();
 
 #### Returns
 
-* **`isDarkTheme: boolean`**: Indicates whether the current theme is a dark theme by checking the theme `type` of the metadata.
+* **`isDarkTheme: boolean`**: Shows whether the current theme is a dark theme by checking the theme `type` of the metadata.
 * **`colors: object`**: Contains the color palette defined in the theme.
 * **`typography: object`**: Contains the typography settings such as typeface, type sizes, and other related properties.
 
@@ -382,7 +382,7 @@ const { isDarkTheme, colors, typography } = useAppTheme();
 
 #### `useThemedStyles`
 
-The `useThemedStyles` hook allows you to generate dynamic styles in the component theme. It leverages the `useAppTheme` hook to get the current theme and applies a callback function to generate a `NamedStyles` object.
+The `useThemedStyles` hook lets you generate dynamic styles in the component theme. It leverages the `useAppTheme` hook to get the current theme and applies a callback function to generate a `NamedStyles` object.
 
 #### Usage
 
@@ -403,7 +403,7 @@ const styles = useThemedStyles(({colors}: AppTheme) => StyleSheet.create({
 
 #### Parameters
 
-* **`callback: (theme: AppTheme) => NamedStyles<T>`**: A function that takes the current theme and returns a `NamedStyles` object. This function can be used to generate styles that react to theme changes.
+* **`callback: (theme: AppTheme) => NamedStyles<T>`**: A function that takes the current theme and returns a `NamedStyles` object. Use this function to generate styles that react to theme changes.
 
 #### Returns
 
@@ -412,7 +412,7 @@ const styles = useThemedStyles(({colors}: AppTheme) => StyleSheet.create({
 ##### Dependencies
 
 * **`useAppTheme()`**: A custom hook that provides the colors of the current themes and typography.
-* **`StyleSheet.NamedStyles`**: A type from React Native's `StyleSheet` API for defining strongly-typed styles.
+* **`StyleSheet.NamedStyles`**: A type from React Native's `StyleSheet` API for defining strongly typed styles.
 
 
 Set up translations
@@ -422,7 +422,7 @@ This section describes how to adjust existing translations to your needs and inc
 
 ### Language list
 
-All available languages are defined in the **languages.ts** file (../../src/services/i18n/languages.ts).
+The **languages.ts** file (../../src/services/i18n/languages.ts) defines all available languages.
 
 ```js
 export const languages = [
@@ -437,7 +437,7 @@ All items must correspond with directories in the **assets/text** directory.
 
 ### Change existing translations
 
-All translations are located in **assets/text** directory using the following structure.
+All translations are located in the **assets/text** directory using the following structure.
 
 
 ```
@@ -467,16 +467,16 @@ To change translations, you must change all needed values in the translation fil
    npm run i18n:sync 
    ```
 
-4. Adjust values of the new keys to a specific language.
+4. Adjust the values of the new keys to a specific language.
 
 
 ### i18n Service details
 
-The i18n Service details section provides a React Native context and custom hook for internationalization (i18n) in the Navigation Interface Focus Examples app. This allows for setting and retrieving the current locale and provides a translation function to fetch and format localized messages.
+The i18n Service details section provides a React Native context and custom hook for internationalization (i18n) in the Navigation Interface Focus Examples app. This service enables setting and retrieving the current locale and provides a translation function to fetch and format localized messages.
 
 #### Structure
 
-Th Navigation Interface Focus Examples app uses the`PUFF-J` files as resources for translation. All files should be created in the **assets/text** directory. New translations should be added in directory with name of language code, for example, **assets/text/es/strings.puff.json**.>
+Th Navigation Interface Focus Examples app uses the `PUFF-J` files as resources for translation. Create all files in the **assets/text** directory. Add new translations in the directory named with the language code, for example, **assets/text/es/strings.puff.json**.
 
 ```
 assets
@@ -524,11 +524,11 @@ The `useTranslation` hook returns an object containing the following methods:
 
 * **`t(translationId: string, params?: { [key: string]: TranslationParamValue })`** 
 
-  Fetches the translation for the given `translationId` based on the current locale. This method accepts an optional `params` object that provides dynamic values to inject into the translation string. If the translation can't be found or fails, the `translationId` is returned as a fallback.
+  Fetches the translation for the given `translationId` based on the current locale. This method accepts an optional `params` object that provides dynamic values to inject into the translation string. If the translation can't be found or fails, the method returns the `translationId` as a fallback.
 
 * **`locale`**  
 
-  The current locale, for example, `en-US`. This is the language and region format used to resolve translations.
+  The current locale, for example, `en-US`. This value represents the language and region format used to resolve translations.
 
 * **`setLocale(locale: string)`**  
 
@@ -536,17 +536,17 @@ The `useTranslation` hook returns an object containing the following methods:
 
 ##### `TranslationProvider` component
 
-The `TranslationProvider` component is a context provider that wraps your app to supply localization features. It allows for managing the current locale and provides a mechanism to update it across your app.
+The `TranslationProvider` component is a context provider that wraps your app to supply localization features. It manages the current locale and provides a mechanism to update it across your app.
 
 #### `TranslationProviderProps`
 
 * **`children: ReactNode`** 
 
-  The child components that are wrapped by the `TranslationProvider`, and have access to the translation context.
+  The child components wrapped by the `TranslationProvider`, which have access to the translation context.
 
 * **`defaultLocale?: Languages`**  
 
-  (Optional) The default locale to be set when the provider initializes. If not provided, the default locale is set to `'en-US'`.
+  (Optional) The default locale to use when the provider initializes. If not provided, the default locale defaults to `'en-US'`.
 
 #### Usage
 
@@ -563,7 +563,7 @@ const App = () => (
 
 #### Syncing translation files
 
-To keep all translation files with the same shape, we provide a script to sync the files automatically. After adding default translations (en-US), to generate the same keys for other languages and provide proper values, run the following command.
+To keep all translation files with the same shape, the project provides a script to sync the files automatically. After adding default translations (en-US), to generate the same keys for other languages and provide proper values, run the following command.
 
 ```
 npm run i18n:sync
