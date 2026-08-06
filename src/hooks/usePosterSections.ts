@@ -43,6 +43,7 @@ import VerticalPosters from '@AppSrc/data/vertical';
  * - resolutions: Different image sizes for responsive loading
  */
 import type { BirdItemHome } from '@AppUtils/birdImageUtils';
+import { scale } from '@AppUtils/scale';
 
 /**
  * Gets card dimensions based on size and direction
@@ -53,19 +54,49 @@ import type { BirdItemHome } from '@AppUtils/birdImageUtils';
 export const getCardLayout = (size: CardSize, direction: Direction) => {
   if (size === 'small') {
     return direction === 'horizontal'
-      ? { width: 240, height: 135, radius: 4, gap: 6 } // 16:9
-      : { width: 240, height: 320, radius: 4, gap: 6 }; // poster
+      ? {
+          width: scale(240),
+          height: scale(135),
+          radius: scale(4),
+          gap: scale(6),
+        } // 16:9
+      : {
+          width: scale(240),
+          height: scale(320),
+          radius: scale(4),
+          gap: scale(6),
+        }; // poster
   }
 
   if (size === 'medium') {
     return direction === 'horizontal'
-      ? { width: 320, height: 180, radius: 6, gap: 8 } // 16:9
-      : { width: 320, height: 400, radius: 6, gap: 8 }; // poster
+      ? {
+          width: scale(320),
+          height: scale(180),
+          radius: scale(6),
+          gap: scale(8),
+        } // 16:9
+      : {
+          width: scale(320),
+          height: scale(400),
+          radius: scale(6),
+          gap: scale(8),
+        }; // poster
   }
 
   return direction === 'horizontal'
-    ? { width: 400, height: 225, radius: 10, gap: 10 } // 16:9
-    : { width: 400, height: 480, radius: 10, gap: 10 }; // poster
+    ? {
+        width: scale(400),
+        height: scale(225),
+        radius: scale(10),
+        gap: scale(10),
+      } // 16:9
+    : {
+        width: scale(400),
+        height: scale(480),
+        radius: scale(10),
+        gap: scale(10),
+      }; // poster
 };
 
 /**
@@ -172,7 +203,7 @@ const buildRowConfig = (size: CardSize, direction: Direction): RowConfig => {
   const layout = getCardLayout(size, direction);
   return {
     ITEM_COUNT: ROW_ITEMS_COUNT,
-    HEIGHT: layout.height + 40 + layout.gap,
+    HEIGHT: layout.height + scale(40) + layout.gap,
     WIDTH: layout.width + layout.gap,
   };
 };
@@ -183,7 +214,7 @@ export const getCardHeight = (
   hasChildren = true,
 ): number => {
   const layout = getCardLayout(size, direction);
-  const extra = hasChildren ? 100 + layout.gap : layout.gap;
+  const extra = hasChildren ? scale(100) + layout.gap : layout.gap;
   return layout.height + extra;
 };
 

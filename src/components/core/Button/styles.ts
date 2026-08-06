@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
+import { scale } from '@AppUtils/scale';
+
 export const getButtonStyles = () =>
   StyleSheet.create({
     button: {
-      minWidth: 120,
+      minWidth: scale(120),
     },
   });

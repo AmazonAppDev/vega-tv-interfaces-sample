@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getAvatarStyles = ({ colors }: AppTheme) =>
   StyleSheet.create({
@@ -10,8 +11,8 @@ export const getAvatarStyles = ({ colors }: AppTheme) =>
     imageWrapper: {
       backgroundColor: colors.surfaceContainer,
       borderColor: colors.transparent,
-      borderWidth: 2,
-      borderRadius: 20,
+      borderWidth: scale(2),
+      borderRadius: scale(20),
       alignItems: 'center',
       justifyContent: 'center',
       overflow: 'hidden',

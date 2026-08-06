@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getComponentsStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -9,26 +10,26 @@ export const getComponentsStyles = (theme: AppTheme) =>
     },
     container: {
       flex: 1,
-      padding: 16,
+      padding: scale(16),
     },
     buttonContainer: {
-      gap: 16,
+      gap: scale(16),
     },
     headerText: {
-      fontSize: 24,
+      fontSize: scale(24),
       fontWeight: 'bold',
       color: theme.colors.primary,
-      marginBottom: 16,
+      marginBottom: scale(16),
     },
     button: {
       backgroundColor: theme.colors.primary,
-      padding: 12,
-      borderRadius: 8,
+      padding: scale(12),
+      borderRadius: scale(8),
       alignItems: 'center',
     },
     buttonText: {
       color: theme.colors.secondary,
-      fontSize: 16,
+      fontSize: scale(16),
       fontWeight: '600',
     },
   });

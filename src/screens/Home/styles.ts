@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getHomeStyles = ({ colors, typography, isDarkTheme }: AppTheme) =>
   StyleSheet.create({
@@ -18,12 +19,12 @@ export const getHomeStyles = ({ colors, typography, isDarkTheme }: AppTheme) =>
     },
     carouselContainer: {
       width: '100%',
-      height: 900,
+      height: scale(900),
     },
     rowContainer: {
       flex: 1,
       width: '100%',
-      paddingHorizontal: 20,
+      paddingHorizontal: scale(20),
       overflow: 'hidden',
     },
     listContainer: {
@@ -34,21 +35,21 @@ export const getHomeStyles = ({ colors, typography, isDarkTheme }: AppTheme) =>
     },
     cardContainer: {},
     headerContainer: {
-      marginLeft: 200,
+      marginLeft: scale(200),
     },
     subHeaderText: {
       color: colors.primaryFixed,
-      marginBottom: 20,
+      marginBottom: scale(20),
     },
     links: {
       flex: 1,
       flexDirection: 'column',
       justifyContent: 'space-around',
-      height: 600,
+      height: scale(600),
     },
     image: {
       flex: 1,
-      paddingLeft: 150,
+      paddingLeft: scale(150),
     },
     textContainer: {
       flex: 1,
@@ -56,24 +57,24 @@ export const getHomeStyles = ({ colors, typography, isDarkTheme }: AppTheme) =>
       alignItems: 'center',
     },
     text: {
-      marginTop: 20,
-      marginLeft: 50,
+      marginTop: scale(20),
+      marginLeft: scale(50),
       fontSize: typography.size?.fontSize?.headline?.sm,
       color: isDarkTheme ? colors.onPrimary : colors.primary,
     },
     flashListHorizontal: {
-      marginLeft: 50,
+      marginLeft: scale(50),
     },
     childText: {
-      fontSize: 16,
+      fontSize: scale(16),
       color: isDarkTheme ? colors.onPrimary : colors.primary,
     },
     logOutButton: {
-      marginTop: 50,
-      padding: 50,
+      marginTop: scale(50),
+      padding: scale(50),
       fontSize: typography.size?.fontSize?.headline?.sm,
       borderColor: colors.primaryFixed,
-      borderWidth: 1,
+      borderWidth: scale(1),
       width: '50%',
     },
     preassableText: {
@@ -81,8 +82,8 @@ export const getHomeStyles = ({ colors, typography, isDarkTheme }: AppTheme) =>
       fontSize: typography.size?.fontSize?.headline?.md,
     },
     bottomModalButton: {
-      marginTop: 50,
-      width: 200,
+      marginTop: scale(50),
+      width: scale(200),
       alignSelf: 'center',
     },
 
@@ -93,15 +94,15 @@ export const getHomeStyles = ({ colors, typography, isDarkTheme }: AppTheme) =>
       justifyContent: 'center',
     },
     loadingContainer: {
-      paddingTop: 100,
+      paddingTop: scale(100),
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
     headerText: {
-      fontSize: 24,
+      fontSize: scale(24),
       fontWeight: 'bold',
       color: isDarkTheme ? colors.onPrimary : colors.primary,
-      marginBottom: 16,
+      marginBottom: scale(16),
     },
   });

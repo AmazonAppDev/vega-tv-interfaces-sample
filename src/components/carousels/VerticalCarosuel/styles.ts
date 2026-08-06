@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getVerticalStackStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -11,14 +12,14 @@ export const getVerticalStackStyles = (theme: AppTheme) =>
       alignItems: 'stretch',
     },
     flashlist: {
-      marginBottom: 50,
+      marginBottom: scale(50),
     },
     column: {
       flex: 1,
       width: '100%',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 20,
+      padding: scale(20),
       overflow: 'hidden',
     },
     leftContainer: {
@@ -35,7 +36,7 @@ export const getVerticalStackStyles = (theme: AppTheme) =>
     image: {
       width: '100%',
       height: '100%',
-      borderRadius: 30,
+      borderRadius: scale(30),
     },
     leftContent: {
       flexBasis: '60%',
@@ -44,13 +45,13 @@ export const getVerticalStackStyles = (theme: AppTheme) =>
       alignItems: 'center',
     },
     leftText: {
-      fontSize: 20,
+      fontSize: scale(20),
       color: theme.colors.onPrimary,
     },
     rightContainer: {
       flex: 1,
       alignSelf: 'stretch',
-      marginTop: 50,
+      marginTop: scale(50),
     },
     avatarContainer: {
       alignItems: 'flex-start',
@@ -59,43 +60,44 @@ export const getVerticalStackStyles = (theme: AppTheme) =>
       justifyContent: 'flex-start',
     },
     playButton: {
-      width: 50,
-      height: 50,
-      borderRadius: 25,
+      width: scale(50),
+      height: scale(50),
+      borderRadius: scale(25),
       backgroundColor: theme.colors.outlineVariant,
       alignItems: 'center',
       justifyContent: 'center',
-      borderWidth: 1,
+      borderWidth: scale(1),
       borderColor: theme.colors.onPrimary,
     },
     playButtonText: {
       color: theme.colors.onPrimary,
+      fontSize: scale(16),
     },
     boxTextContainer: {
       alignItems: 'flex-start',
       flexBasis: '90%',
     },
     headerText: {
-      fontSize: 24,
+      fontSize: scale(24),
       color: theme.colors.onPrimary,
-      marginBottom: 20,
+      marginBottom: scale(20),
     },
     box: {
       flex: 1,
       width: '100%',
-      marginBottom: 20,
-      borderRadius: 30,
+      marginBottom: scale(20),
+      borderRadius: scale(30),
       backgroundColor: theme.colors.outlineVariant,
-      borderWidth: 2,
+      borderWidth: scale(2),
       borderColor: theme.colors.transparent,
     },
     boxFocused: {
-      borderWidth: 2,
+      borderWidth: scale(2),
       borderColor: theme.colors.onPrimary,
       backgroundColor: theme.colors.shadow,
     },
     boxPressed: {
-      borderWidth: 2,
+      borderWidth: scale(2),
       borderColor: theme.colors.onPrimary,
       backgroundColor: theme.colors.shadow,
     },
@@ -106,7 +108,7 @@ export const getVerticalStackStyles = (theme: AppTheme) =>
       justifyContent: 'space-between',
     },
     boxText: {
-      fontSize: 18,
+      fontSize: scale(18),
       color: theme.colors.onPrimary,
     },
     innerContainer: {
@@ -115,29 +117,29 @@ export const getVerticalStackStyles = (theme: AppTheme) =>
     },
 
     title: {
-      fontSize: 20,
+      fontSize: scale(20),
       color: theme.colors.onPrimary,
     },
     dateContainer: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 10,
-      marginVertical: 5,
+      gap: scale(10),
+      marginVertical: scale(5),
     },
     date: {
-      fontSize: 14,
+      fontSize: scale(14),
       color: theme.colors.outline,
     },
     bullet: {
-      fontSize: 14,
+      fontSize: scale(14),
       color: theme.colors.outline,
     },
     duration: {
-      fontSize: 14,
+      fontSize: scale(14),
       color: theme.colors.outline,
     },
     shortDescription: {
-      fontSize: 16,
+      fontSize: scale(16),
       color: theme.colors.onPrimary,
     },
   });

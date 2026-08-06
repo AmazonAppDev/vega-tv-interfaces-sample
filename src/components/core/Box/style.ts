@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import type { ThemeColors } from '@AppTheme';
 import { darkPalette, lightPalette } from '@AppTheme/palette';
+import { scale } from '@AppUtils/scale';
 
 export const getBoxStyles = ({ colors }: { colors: ThemeColors }) =>
   StyleSheet.create({
@@ -13,18 +14,18 @@ export const getBoxStyles = ({ colors }: { colors: ThemeColors }) =>
     },
     primary: {
       backgroundColor: colors.primary,
-      borderRadius: 8,
+      borderRadius: scale(8),
       elevation: 4,
     },
     secondary: {
       backgroundColor: colors.secondary,
-      borderRadius: 8,
+      borderRadius: scale(8),
       elevation: 6,
     },
     outlined: {
-      borderWidth: 1,
+      borderWidth: scale(1),
       borderColor: colors.primary,
-      borderRadius: 8,
+      borderRadius: scale(8),
       elevation: 2,
     },
     ghost: {
@@ -32,26 +33,26 @@ export const getBoxStyles = ({ colors }: { colors: ThemeColors }) =>
     },
     // Sizes
     sm: {
-      padding: 8,
-      borderRadius: 4,
+      padding: scale(8),
+      borderRadius: scale(4),
     },
     md: {
-      padding: 16,
-      borderRadius: 8,
+      padding: scale(16),
+      borderRadius: scale(8),
     },
     lg: {
-      padding: 24,
-      borderRadius: 12,
+      padding: scale(24),
+      borderRadius: scale(12),
     },
     // States
     focused: {
       borderColor: colors.onPrimary,
-      borderWidth: 3,
+      borderWidth: scale(3),
       backgroundColor: colors.outline,
     },
     pressed: {
       borderColor: colors.inversePrimary,
-      borderWidth: 3,
+      borderWidth: scale(3),
       backgroundColor: colors.secondary,
     },
     disabled: {

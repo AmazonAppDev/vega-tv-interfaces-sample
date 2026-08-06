@@ -6,6 +6,7 @@ import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import { useThemedStyles } from '@AppTheme';
 import { ExampleModal } from '@AppComponents/ExampleModal/ExampleModal';
 import { FocusGuideView } from '@AppServices/focusGuide';
+import { scale } from '@AppUtils/scale';
 import { GridItem } from './GridItem';
 import { GridStyle } from './styles';
 
@@ -14,17 +15,17 @@ export const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 export const COLUMNS = 6;
 export const IMAGE_ASPECT_RATIO = 695 / 360;
-export const BASE_ITEM_WIDTH = 360;
+export const BASE_ITEM_WIDTH = scale(360);
 export const BASE_GRID_ITEM_HEIGHT = Math.floor(
   BASE_ITEM_WIDTH * IMAGE_ASPECT_RATIO,
 );
-export const BASE_MARGIN = 40;
+export const BASE_MARGIN = scale(40);
 const TOTAL_MARGIN = BASE_MARGIN * (COLUMNS - 1);
 const AVAILABLE_WIDTH = SCREEN_WIDTH * 0.9 - TOTAL_MARGIN;
 
 export const ITEM_WIDTH = Math.floor(AVAILABLE_WIDTH / COLUMNS);
 export const GRID_ITEM_HEIGHT = Math.floor(ITEM_WIDTH * IMAGE_ASPECT_RATIO);
-const MIN_ITEM_WIDTH = 200;
+const MIN_ITEM_WIDTH = scale(200);
 export const ITEM_WIDTH_FINAL = Math.max(ITEM_WIDTH, MIN_ITEM_WIDTH);
 
 export const GRID_ITEM_HEIGHT_FINAL = Math.max(

@@ -1,4 +1,6 @@
+import { scale } from '@AppUtils/scale';
+
 export const MENU_WIDTHS = {
-  open: 300,
-  closed: 100,
+  open: scale(300),
+  closed: scale(100),
 };

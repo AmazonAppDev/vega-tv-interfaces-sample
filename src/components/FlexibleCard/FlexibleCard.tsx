@@ -5,6 +5,7 @@ import { useThemedStyles } from '@AppTheme';
 import { useImagePrefetchQueue } from '@AppSrc/hooks/useImagePrefetchQueue';
 import { getCardHeight, getCardLayout } from '@AppSrc/hooks/usePosterSections';
 import { logDebug } from '@AppUtils/logging';
+import { scale } from '@AppUtils/scale';
 import { PlaceholderCard } from './PlaceholderCard';
 import { getFlexibleCardStyle } from './styles';
 
@@ -68,7 +69,7 @@ export type FlexibleCardProps = {
   isRowVisible?: boolean;
 };
 
-const FOCUS_BORDER = 8;
+const FOCUS_BORDER = scale(8);
 
 const HIGH_PRIORITY = 1;
 const MEDIUM_PRIORITY = 2;

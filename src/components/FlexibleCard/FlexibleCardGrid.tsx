@@ -12,6 +12,7 @@ import type {
   LayoutConfig,
   PosterRowData,
 } from '@AppSrc/hooks/usePosterSections';
+import { scale } from '@AppUtils/scale';
 import { POSTER_ROW_VARIATIONS } from './helpers';
 import { getFlexibleCardStyle } from './styles';
 
@@ -70,8 +71,8 @@ const carouselData: Array<CarouselItem> = [
   },
 ];
 
-const CAROUSEL_ROW_DISTANCE = 895;
-const FLASHLIST_FILLER = 169;
+const CAROUSEL_ROW_DISTANCE = scale(895);
+const FLASHLIST_FILLER = scale(169);
 
 export const FlexibleCardGrid = memo(() => {
   const styles = useThemedStyles(getFlexibleCardStyle);

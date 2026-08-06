@@ -78,8 +78,8 @@ describe('VerticalCarousel', () => {
     // Check ImageTile
     const imageTile = UNSAFE_root.findByType(ImageTile);
     expect(imageTile.props).toMatchObject({
-      width: 340,
-      height: 540,
+      width: 170,
+      height: 270,
     });
   });
 

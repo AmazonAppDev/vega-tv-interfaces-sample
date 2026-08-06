@@ -6,3 +6,4 @@ export * from './object';
 export * from './getRandomId';
 export * from './capitalize';
 export * from './useRerenderOnFocus';
+export * from './scale';

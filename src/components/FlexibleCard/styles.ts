@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -11,7 +12,7 @@ export const getFlexibleCardStyle = (theme: AppTheme) =>
       width: SCREEN_WIDTH,
     },
     container: {
-      margin: 10,
+      margin: scale(10),
       position: 'relative',
     },
     outContainer: {
@@ -23,7 +24,7 @@ export const getFlexibleCardStyle = (theme: AppTheme) =>
       top: 0,
       left: 0,
       borderColor: theme.colors.transparent,
-      borderWidth: 5,
+      borderWidth: scale(5),
       zIndex: 9999,
       width: '100%',
       height: '100%',
@@ -44,22 +45,22 @@ export const getFlexibleCardStyle = (theme: AppTheme) =>
     },
     childrenContainer: {
       width: '100%',
-      padding: 16,
+      padding: scale(16),
       backgroundColor: theme.isDarkTheme
         ? theme.colors.textBackground
         : theme.colors.transparent,
     },
     childrenText: {
-      fontSize: 14,
-      lineHeight: 20,
-      maxHeight: 40,
+      fontSize: scale(14),
+      lineHeight: scale(20),
+      maxHeight: scale(40),
       overflow: 'hidden',
     },
 
     // Grid
     carouselContainer: {
       width: '100%',
-      height: 900,
+      height: scale(900),
     },
 
     // Activity Indicator
@@ -67,7 +68,7 @@ export const getFlexibleCardStyle = (theme: AppTheme) =>
       position: 'absolute',
       top: '50%',
       left: '50%',
-      transform: [{ translateX: -20 }, { translateY: -20 }],
+      transform: [{ translateX: scale(-20) }, { translateY: scale(-20) }],
       zIndex: 9999,
     },
 

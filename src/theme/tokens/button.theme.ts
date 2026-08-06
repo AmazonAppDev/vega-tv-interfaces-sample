@@ -2,43 +2,44 @@ import type { ButtonTokens } from '@amazon-devices/kepler-ui-components';
 
 import type { ThemeColors } from '@AppTheme';
 import { darkPalette, lightPalette } from '@AppTheme/palette';
+import { scale } from '@AppUtils/scale';
 
 const size = {
   height: {
-    sm: 76,
-    md: 84,
-    lg: 92,
-    xl: 120,
+    sm: scale(76),
+    md: scale(84),
+    lg: scale(92),
+    xl: scale(120),
   },
   horizontalPadding: {
-    sm: 18,
-    md: 18,
-    lg: 20,
-    xl: 24,
+    sm: scale(18),
+    md: scale(18),
+    lg: scale(20),
+    xl: scale(24),
   },
   borderWidth: {
-    sm: 4,
-    md: 4,
-    lg: 5,
-    xl: 5,
+    sm: scale(4),
+    md: scale(4),
+    lg: scale(5),
+    xl: scale(5),
   },
   borderRadius: {
-    sm: 8,
-    md: 8,
-    lg: 8,
-    xl: 8,
+    sm: scale(8),
+    md: scale(8),
+    lg: scale(8),
+    xl: scale(8),
   },
   margin: {
-    sm: 6,
-    md: 10,
-    lg: 14,
-    xl: 18,
+    sm: scale(6),
+    md: scale(10),
+    lg: scale(14),
+    xl: scale(18),
   },
   fontSize: {
-    sm: 22,
-    md: 24,
-    lg: 32,
-    xl: 32,
+    sm: scale(22),
+    md: scale(24),
+    lg: scale(32),
+    xl: scale(32),
   },
 } as const;
 
