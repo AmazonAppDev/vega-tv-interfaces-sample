@@ -7,7 +7,7 @@ schema-version = 1
 
 [package]
 title = "Vega TV Interfaces Sample App"
-version = "0.23.0"
+version = "0.24.0"
 id = "com.amazondeveloper.keplertvinterfaces"
 icon = "@image/tv-interfaces-app-dark.png"
 
@@ -68,6 +68,13 @@ id = "com.amazon.devconf.privilege.accessibility"
 [[needs.privilege]]
 id="com.amazon.network.privilege.net-info"
 
+[[needs.module]]
+id = "/com.amazon.vega.os@IVega_1_2"
+
 [offers]
 [[offers.service]]
 id = "com.amazon.gipc.uuid.*"
+
+[os.version]
+target = "1.2"
+min = "1.2"
