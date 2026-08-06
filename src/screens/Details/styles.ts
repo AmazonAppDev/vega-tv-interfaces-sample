@@ -1,26 +1,27 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getDetailsStyles = ({ colors }: AppTheme) =>
   StyleSheet.create({
     screenContainer: {
       backgroundColor: colors.background,
-      marginHorizontal: 50,
+      marginHorizontal: scale(50),
     },
     container: {
       flex: 1,
       alignItems: 'center',
     },
     headerContainer: {
-      paddingTop: 50,
-      paddingLeft: 50,
+      paddingTop: scale(50),
+      paddingLeft: scale(50),
     },
     headerText: {
-      marginBottom: 10,
+      marginBottom: scale(10),
     },
     button: {
-      width: 150,
+      width: scale(150),
     },
   });
 

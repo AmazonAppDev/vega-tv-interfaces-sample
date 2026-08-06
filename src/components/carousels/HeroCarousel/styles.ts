@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getHeroCarouselStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -23,7 +24,7 @@ export const getHeroCarouselStyles = (theme: AppTheme) =>
     dotContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
-      padding: 16,
+      padding: scale(16),
       flexWrap: 'wrap',
     },
 
@@ -37,7 +38,7 @@ export const getHeroCarouselStyles = (theme: AppTheme) =>
     slide: {
       flex: 1,
       justifyContent: 'flex-end',
-      padding: 40,
+      padding: scale(40),
     },
     backgroundImage: {
       position: 'absolute',
@@ -50,32 +51,32 @@ export const getHeroCarouselStyles = (theme: AppTheme) =>
     contentContainer: {
       alignSelf: 'flex-start',
       backgroundColor: theme.colors.modalBackground,
-      padding: 30,
-      borderRadius: 12,
+      padding: scale(30),
+      borderRadius: scale(12),
       maxWidth: '30%',
-      marginLeft: 50,
+      marginLeft: scale(50),
     },
     title: {
-      fontSize: 38,
+      fontSize: scale(38),
       fontWeight: 'bold',
       color: theme.colors.onPrimary,
     },
     description: {
-      fontSize: 16,
+      fontSize: scale(16),
       color: theme.colors.onPrimary,
-      marginTop: 8,
+      marginTop: scale(8),
     },
     childrenContainer: {
-      marginTop: 20,
+      marginTop: scale(20),
     },
 
     // Dot
     dot: {
-      width: 15,
-      height: 15,
-      borderRadius: 15,
+      width: scale(15),
+      height: scale(15),
+      borderRadius: scale(15),
       backgroundColor: theme.colors.primary,
-      marginHorizontal: 6,
-      marginBottom: 16,
+      marginHorizontal: scale(6),
+      marginBottom: scale(16),
     },
   });

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getTextInputStyles = ({ colors, typography }: AppTheme) =>
   StyleSheet.create({
@@ -8,18 +9,18 @@ export const getTextInputStyles = ({ colors, typography }: AppTheme) =>
       width: '100%',
     },
     textContainer: {
-      paddingVertical: 12,
-      paddingHorizontal: 24,
+      paddingVertical: scale(12),
+      paddingHorizontal: scale(24),
     },
     outerContainer: {
-      gap: 10,
+      gap: scale(10),
     },
     label: {
       fontFamily: 'Amazon Ember',
       fontWeight: '700',
     },
     errorTextContainer: {
-      marginTop: 6,
+      marginTop: scale(6),
       minHeight: typography.size?.lineHeight?.label?.lg,
     },
     errorText: {

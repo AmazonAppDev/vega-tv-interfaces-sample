@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getModalStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -10,50 +11,50 @@ export const getModalStyles = (theme: AppTheme) =>
       alignItems: 'center',
     },
     modalContent: {
-      minWidth: 600,
+      minWidth: scale(600),
       backgroundColor: theme.colors.surface,
-      borderRadius: 40,
+      borderRadius: scale(40),
       alignItems: 'center',
       overflow: 'hidden',
-      marginBottom: 20,
+      marginBottom: scale(20),
     },
     modalContentPadding: {
       width: '100%',
-      padding: 20,
+      padding: scale(20),
     },
     modalImage: {
       width: '100%',
-      minHeight: 600,
-      borderRadius: 8,
-      marginBottom: 15,
+      minHeight: scale(600),
+      borderRadius: scale(8),
+      marginBottom: scale(15),
       resizeMode: 'contain',
     },
     modalTitle: {
-      fontSize: 30,
+      fontSize: scale(30),
       color: theme.colors.onPrimary,
       fontWeight: 'bold',
       textAlign: 'center',
-      marginBottom: 5,
+      marginBottom: scale(5),
     },
     modalSubtitle: {
-      fontSize: 16,
+      fontSize: scale(16),
       color: theme.colors.onPrimary,
       textAlign: 'center',
-      marginBottom: 10,
+      marginBottom: scale(10),
     },
     modalDescription: {
-      fontSize: 18,
+      fontSize: scale(18),
       color: theme.colors.onPrimary,
       textAlign: 'center',
-      marginBottom: 20,
+      marginBottom: scale(20),
     },
     modalButton: {
       width: '100%',
       backgroundColor: theme.colors.tertiary,
-      padding: 12,
-      borderRadius: 8,
+      padding: scale(12),
+      borderRadius: scale(8),
       alignItems: 'center',
-      marginBottom: 10,
+      marginBottom: scale(10),
     },
     modalButtonFocused: {
       backgroundColor: theme.colors.primary,
@@ -61,13 +62,13 @@ export const getModalStyles = (theme: AppTheme) =>
     modalSecondaryButton: {
       width: '100%',
       backgroundColor: theme.colors.tertiary,
-      padding: 12,
-      borderRadius: 8,
+      padding: scale(12),
+      borderRadius: scale(8),
       alignItems: 'center',
     },
     modalButtonText: {
       color: theme.colors.background,
-      fontSize: 16,
+      fontSize: scale(16),
       fontWeight: 'bold',
     },
   });

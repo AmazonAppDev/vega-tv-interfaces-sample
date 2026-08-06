@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getBrowseStackStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -16,7 +17,7 @@ export const getBrowseStackStyles = (theme: AppTheme) =>
     },
     container: {
       flex: 1,
-      marginTop: 10,
+      marginTop: scale(10),
       alignItems: 'center',
       padding: 0,
     },
@@ -26,9 +27,9 @@ export const getBrowseStackStyles = (theme: AppTheme) =>
       alignItems: 'center',
     },
     headerText: {
-      fontSize: 24,
+      fontSize: scale(24),
       fontWeight: 'bold',
       color: theme.colors.onPrimary,
-      marginBottom: 16,
+      marginBottom: scale(16),
     },
   });

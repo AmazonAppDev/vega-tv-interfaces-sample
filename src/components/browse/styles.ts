@@ -1,33 +1,34 @@
 import { StyleSheet } from 'react-native';
 
 import type { AppTheme } from '@AppTheme';
+import { scale } from '@AppUtils/scale';
 
 export const getBrowseStyle = (theme: AppTheme) =>
   StyleSheet.create({
     container: {
       width: '100%',
       alignItems: 'center',
-      marginVertical: 30,
+      marginVertical: scale(30),
     },
     title: {
-      fontSize: 50,
+      fontSize: scale(50),
       color: theme.colors.outline,
     },
     tabContainer: {
       flexDirection: 'row',
-      paddingHorizontal: 16,
-      paddingVertical: 8,
-      height: 48,
+      paddingHorizontal: scale(16),
+      paddingVertical: scale(8),
+      height: scale(48),
     },
     tab: {
-      width: 200,
-      height: 48,
+      width: scale(200),
+      height: scale(48),
       justifyContent: 'center',
       alignItems: 'center',
-      marginHorizontal: 8,
+      marginHorizontal: scale(8),
       padding: 0,
-      borderRadius: 50,
-      borderWidth: 3,
+      borderRadius: scale(50),
+      borderWidth: scale(3),
     },
     activeTab: {
       backgroundColor: theme.colors.primary,
@@ -36,7 +37,7 @@ export const getBrowseStyle = (theme: AppTheme) =>
       backgroundColor: theme.colors.surfaceVariant,
     },
     tabText: {
-      fontSize: 25,
+      fontSize: scale(25),
       color: theme.colors.onPrimary,
       fontWeight: 'bold',
     },
@@ -47,9 +48,9 @@ export const getBrowseStyle = (theme: AppTheme) =>
     drawerContainer: {
       flex: 1,
       backgroundColor: theme.colors.background,
-      paddingLeft: 20,
-      paddingRight: 10,
-      paddingTop: 20,
+      paddingLeft: scale(20),
+      paddingRight: scale(10),
+      paddingTop: scale(20),
       width: '100%',
     },
     scrollContainer: {
@@ -58,20 +59,20 @@ export const getBrowseStyle = (theme: AppTheme) =>
     },
     header: {
       color: theme.colors.onSurface,
-      fontSize: 24,
+      fontSize: scale(24),
       fontWeight: 'bold',
-      marginBottom: 20,
+      marginBottom: scale(20),
     },
     filterItem: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      paddingVertical: 15,
-      paddingRight: 10,
-      borderBottomWidth: 1,
+      paddingVertical: scale(15),
+      paddingRight: scale(10),
+      borderBottomWidth: scale(1),
       borderBottomColor: theme.colors.outline,
       width: '100%',
-      minHeight: 100,
+      minHeight: scale(100),
     },
     focusedItem: {
       borderBottomColor: theme.colors.primary,
@@ -81,21 +82,21 @@ export const getBrowseStyle = (theme: AppTheme) =>
     },
     filterText: {
       color: theme.colors.onSurface,
-      fontSize: 25,
+      fontSize: scale(25),
     },
     arrow: {
       color: theme.colors.onPrimary,
-      fontSize: 25,
+      fontSize: scale(25),
     },
     closeButton: {
-      marginTop: 20,
-      marginBottom: 20,
-      paddingVertical: 12,
-      paddingHorizontal: 24,
+      marginTop: scale(20),
+      marginBottom: scale(20),
+      paddingVertical: scale(12),
+      paddingHorizontal: scale(24),
       backgroundColor: theme.colors.surface,
       alignItems: 'center',
-      borderRadius: 8,
-      borderWidth: 1,
+      borderRadius: scale(8),
+      borderWidth: scale(1),
       borderColor: theme.colors.outline,
       alignSelf: 'center',
     },
@@ -104,23 +105,23 @@ export const getBrowseStyle = (theme: AppTheme) =>
     },
     closeText: {
       color: theme.colors.onSurface,
-      fontSize: 16,
+      fontSize: scale(16),
     },
     subFiltersContainer: {
       width: '100%',
-      paddingLeft: 20,
-      paddingRight: 10,
+      paddingLeft: scale(20),
+      paddingRight: scale(10),
       backgroundColor: theme.colors.surfaceVariant,
     },
     subFilterItem: {
-      padding: 12,
-      borderBottomWidth: 1,
+      padding: scale(12),
+      borderBottomWidth: scale(1),
       borderBottomColor: theme.colors.outline,
       width: '100%',
     },
     subFilterText: {
       color: theme.colors.onPrimary,
-      fontSize: 20,
+      fontSize: scale(20),
       fontWeight: 'bold',
     },
   });

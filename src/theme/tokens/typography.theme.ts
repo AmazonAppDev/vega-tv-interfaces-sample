@@ -3,11 +3,12 @@ import type { SizeMapNumber } from '@amazon-devices/kepler-ui-components/dist/sr
 
 import type { ThemeColors } from '@AppTheme';
 import { darkPalette, lightPalette } from '@AppTheme/palette';
+import { scale } from '@AppUtils/scale';
 
 const getFontSizes = (baseFontSize = 20): SizeMapNumber => ({
-  md: baseFontSize,
-  sm: baseFontSize * 0.75,
-  lg: baseFontSize * 1.5,
+  md: scale(baseFontSize),
+  sm: scale(baseFontSize * 0.75),
+  lg: scale(baseFontSize * 1.5),
 });
 const makeTypographyTokens = (
   palette: ThemeColors,

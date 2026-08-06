@@ -21,7 +21,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
           "flex": 1,
           "justifyContent": "center",
           "overflow": "hidden",
-          "padding": 20,
+          "padding": 10,
           "width": "100%",
         }
       }
@@ -78,8 +78,8 @@ exports[`VerticalCarousel renders correctly 1`] = `
                       "justifyContent": "flex-end",
                     },
                     {
-                      "height": 540,
-                      "width": 340,
+                      "height": 270,
+                      "width": 170,
                     },
                   ]
                 }
@@ -102,8 +102,8 @@ exports[`VerticalCarousel renders correctly 1`] = `
                         "top": 0,
                       },
                       {
-                        "height": 540,
-                        "width": 340,
+                        "height": 270,
+                        "width": 170,
                       },
                       undefined,
                     ]
@@ -124,7 +124,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
             "flex": 1,
             "justifyContent": "center",
             "overflow": "hidden",
-            "padding": 20,
+            "padding": 10,
             "width": "100%",
           },
         ]
@@ -135,7 +135,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
           {
             "alignSelf": "stretch",
             "flex": 1,
-            "marginTop": 50,
+            "marginTop": 25,
           }
         }
       >
@@ -143,8 +143,8 @@ exports[`VerticalCarousel renders correctly 1`] = `
           style={
             {
               "color": "#fff",
-              "fontSize": 24,
-              "marginBottom": 20,
+              "fontSize": 12,
+              "marginBottom": 10,
             }
           }
         >
@@ -185,13 +185,13 @@ exports[`VerticalCarousel renders correctly 1`] = `
             {
               "backgroundColor": undefined,
               "borderColor": "transparent",
-              "borderRadius": 30,
-              "borderWidth": 2,
+              "borderRadius": 15,
+              "borderWidth": 1,
               "elevation": 0,
               "flex": 1,
-              "marginBottom": 20,
+              "marginBottom": 10,
               "opacity": 1,
-              "padding": 16,
+              "padding": 8,
               "width": "100%",
             }
           }
@@ -217,7 +217,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                     "flex": 1,
                     "justifyContent": "center",
                     "overflow": "hidden",
-                    "padding": 20,
+                    "padding": 10,
                     "width": "100%",
                   },
                   {
@@ -264,12 +264,12 @@ exports[`VerticalCarousel renders correctly 1`] = `
                     "alignItems": "center",
                     "backgroundColor": undefined,
                     "borderColor": "#fff",
-                    "borderRadius": 25,
-                    "borderWidth": 1,
-                    "height": 50,
+                    "borderRadius": 12.5,
+                    "borderWidth": 0.5,
+                    "height": 25,
                     "justifyContent": "center",
                     "opacity": 1,
-                    "width": 50,
+                    "width": 25,
                   }
                 }
               >
@@ -277,6 +277,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#fff",
+                      "fontSize": 8,
                     }
                   }
                 >
@@ -292,7 +293,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                     "flex": 1,
                     "justifyContent": "center",
                     "overflow": "hidden",
-                    "padding": 20,
+                    "padding": 10,
                     "width": "100%",
                   },
                   {
@@ -306,7 +307,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                 style={
                   {
                     "color": "#fff",
-                    "fontSize": 20,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -317,8 +318,8 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   {
                     "alignItems": "center",
                     "flexDirection": "row",
-                    "gap": 10,
-                    "marginVertical": 5,
+                    "gap": 5,
+                    "marginVertical": 2.5,
                   }
                 }
               >
@@ -326,7 +327,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#ccc",
-                      "fontSize": 14,
+                      "fontSize": 7,
                     }
                   }
                 >
@@ -336,7 +337,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#ccc",
-                      "fontSize": 14,
+                      "fontSize": 7,
                     }
                   }
                 >
@@ -346,7 +347,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#ccc",
-                      "fontSize": 14,
+                      "fontSize": 7,
                     }
                   }
                 >
@@ -357,7 +358,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                 style={
                   {
                     "color": "#fff",
-                    "fontSize": 16,
+                    "fontSize": 8,
                   }
                 }
               >
@@ -401,13 +402,13 @@ exports[`VerticalCarousel renders correctly 1`] = `
             {
               "backgroundColor": undefined,
               "borderColor": "transparent",
-              "borderRadius": 30,
-              "borderWidth": 2,
+              "borderRadius": 15,
+              "borderWidth": 1,
               "elevation": 0,
               "flex": 1,
-              "marginBottom": 20,
+              "marginBottom": 10,
               "opacity": 1,
-              "padding": 16,
+              "padding": 8,
               "width": "100%",
             }
           }
@@ -433,7 +434,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                     "flex": 1,
                     "justifyContent": "center",
                     "overflow": "hidden",
-                    "padding": 20,
+                    "padding": 10,
                     "width": "100%",
                   },
                   {
@@ -480,12 +481,12 @@ exports[`VerticalCarousel renders correctly 1`] = `
                     "alignItems": "center",
                     "backgroundColor": undefined,
                     "borderColor": "#fff",
-                    "borderRadius": 25,
-                    "borderWidth": 1,
-                    "height": 50,
+                    "borderRadius": 12.5,
+                    "borderWidth": 0.5,
+                    "height": 25,
                     "justifyContent": "center",
                     "opacity": 1,
-                    "width": 50,
+                    "width": 25,
                   }
                 }
               >
@@ -493,6 +494,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#fff",
+                      "fontSize": 8,
                     }
                   }
                 >
@@ -508,7 +510,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                     "flex": 1,
                     "justifyContent": "center",
                     "overflow": "hidden",
-                    "padding": 20,
+                    "padding": 10,
                     "width": "100%",
                   },
                   {
@@ -522,7 +524,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                 style={
                   {
                     "color": "#fff",
-                    "fontSize": 20,
+                    "fontSize": 10,
                   }
                 }
               >
@@ -533,8 +535,8 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   {
                     "alignItems": "center",
                     "flexDirection": "row",
-                    "gap": 10,
-                    "marginVertical": 5,
+                    "gap": 5,
+                    "marginVertical": 2.5,
                   }
                 }
               >
@@ -542,7 +544,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#ccc",
-                      "fontSize": 14,
+                      "fontSize": 7,
                     }
                   }
                 >
@@ -552,7 +554,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#ccc",
-                      "fontSize": 14,
+                      "fontSize": 7,
                     }
                   }
                 >
@@ -562,7 +564,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                   style={
                     {
                       "color": "#ccc",
-                      "fontSize": 14,
+                      "fontSize": 7,
                     }
                   }
                 >
@@ -573,7 +575,7 @@ exports[`VerticalCarousel renders correctly 1`] = `
                 style={
                   {
                     "color": "#fff",
-                    "fontSize": 16,
+                    "fontSize": 8,
                   }
                 }
               >

@@ -14,6 +14,7 @@ import { Box } from '@AppComponents/core/Box/Box';
 import type { Item } from '@AppScreens/Components/VerticalStack';
 import { useItemFocusManager } from '@AppSrc/hooks/useItemFocusManager';
 import { getBirdImageUrl } from '@AppUtils/birdImageUtils';
+import { scale } from '@AppUtils/scale';
 import { getVerticalStackStyles } from './styles';
 
 export const VerticalCarousel = ({ data }: { data: Item[] }) => {
@@ -79,8 +80,8 @@ export const VerticalCarousel = ({ data }: { data: Item[] }) => {
               <ImageTile
                 testID={`vertical-carousel-image-${albumIndex}`}
                 style={styles.image}
-                width={340}
-                height={540}
+                width={scale(340)}
+                height={scale(540)}
                 imageUrl={getBirdImageUrl(albumIndex)}
               />
             </View>
