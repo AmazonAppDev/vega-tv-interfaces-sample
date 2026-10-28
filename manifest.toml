@@ -12,8 +12,8 @@ id = "com.amazondeveloper.keplertvinterfaces"
 icon = "@image/tv-interfaces-app-dark.png"
 
 [os.version]
-min = "1.2"
-target = "1.2"
+min = "2.0"
+target = "2.0"
 
 [components]
 [[components.interactive]]
@@ -71,9 +71,6 @@ id = "com.amazon.devconf.privilege.accessibility"
 [needs]
 [[needs.privilege]]
 id="com.amazon.network.privilege.net-info"
-
-[[needs.module]]
-id = "/com.amazon.vega.os@IVega_1_2"
 
 [offers]
 [[offers.service]]

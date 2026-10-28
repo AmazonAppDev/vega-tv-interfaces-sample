@@ -5,6 +5,19 @@ The Vega TV Interfaces Sample App is built with the Vega Developer Tools. This s
 
 ![App Preview](./docs/images/launch-app.png)
 
+Branches
+--------
+
+> **Note:** `main` targets **Vega OS 2.0** (Vega SDK 2.0). Use `main` for new development on the latest Vega platform. See the [Vega 2.0 docs](https://developer.amazon.com/docs/vega/2.0/vega-get-started).
+
+Each release branch pins a React Native version and Vega OS target. Pick the branch that matches the platform you are shipping to.
+
+| Branch | React Native | Vega OS | When to use it |
+|--------|--------------|---------|----------------|
+| [`main`](https://github.com/AmazonAppDev/vega-tv-interfaces-sample/tree/main) | 0.83 | [2.0 (Vega SDK 2.0)](https://developer.amazon.com/docs/vega/2.0/vega-get-started) | Latest Vega OS 2.0 development. Start here for new work. |
+| [`release-rn-83`](https://github.com/AmazonAppDev/vega-tv-interfaces-sample/tree/release-rn-83) | 0.83 | 1.2 | Vega OS 1.2 devices on React Native 0.83. |
+| [`release-rn-72-24`](https://github.com/AmazonAppDev/vega-tv-interfaces-sample/tree/release-rn-72-24) | 0.72 | 1.2 | Projects on React Native 0.72 that still target Vega OS 1.2. |
+
 Introduction
 ------------
 
